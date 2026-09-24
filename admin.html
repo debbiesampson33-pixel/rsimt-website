@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSIMT Admin | Students & Results</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:Arial,sans-serif; background:#f4f8f5; color:#333; }
+    header { background:#fff; padding:22px 6%; display:flex; justify-content:space-between; border-bottom:1px solid #ddd; }
+    header strong { color:#087f3f; font-size:22px; }
+    main { max-width:900px; margin:40px auto; padding:0 20px; }
+    .card { background:#fff; padding:28px; margin-bottom:24px; border-radius:14px; box-shadow:0 8px 25px rgba(0,0,0,.06); }
+    h1,h2 { margin-top:0; }
+    label { display:block; font-weight:700; margin:14px 0 6px; }
+    input, select { width:100%; padding:12px; border:1px solid #ccc; border-radius:7px; font-size:15px; }
+    button { margin-top:18px; padding:12px 18px; border:0; border-radius:7px; background:#087f3f; color:#fff; font-weight:700; cursor:pointer; }
+    .message { margin-top:14px; font-weight:700; }
+    .hint { color:#666; font-size:13px; }
+  </style>
+</head>
+<body>
+<header>
+  <strong>RSIMT ADMIN</strong>
+  <a href="rsimt.html">← Back to RSIMT</a>
+</header>
+
+<main>
+  <div class="card">
+    <h1>Add Student</h1>
+    <p class="hint">Enter the student's account details. They can then use these details on Student Portal.</p>
+
+    <label>Admin Key</label>
+    <input id="student-admin-key" type="password" placeholder="Enter admin key">
+
+    <label>Student ID</label>
+    <input id="student-id" placeholder="e.g. RSIMT002">
+
+    <label>Full Name</label>
+    <input id="full-name" placeholder="Student full name">
+
+    <label>Email</label>
+    <input id="email" type="email" placeholder="student@example.com">
+
+    <label>Password</label>
+    <input id="password" type="password" placeholder="Temporary student password">
+
+    <button onclick="addStudent()">Add Student</button>
+    <div id="student-message" class="message"></div>
+  </div>
+  <div class="card">
+    <h2>Add Staff Account</h2>
+    <p class="hint">Create a staff account for the Staff Portal.</p>
+
+    <label>Admin Key</label>
+    <input id="staff-admin-key" type="password" placeholder="Enter admin key">
+
+    <label>Staff ID</label>
+    <input id="staff-id" placeholder="e.g. STAFF001">
+
+    <label>Full Name</label>
+    <input id="staff-full-name" placeholder="Staff full name">
+
+    <label>Email</label>
+    <input id="staff-email" type="email" placeholder="staff@example.com">
+
+    <label>Password</label>
+    <input id="staff-password" type="password" placeholder="Staff password">
+
+    <button onclick="addStaff()">Add Staff Account</button>
+    <div id="staff-message" class="message"></div>
+  </div>
+
+  <div class="card">
+    <h2>Add Result</h2>
+
+    <label>Admin Key</label>
+    <input id="result-admin-key" type="password" placeholder="Enter admin key">
+
+    <label>Student ID</label>
+    <input id="result-student-id" placeholder="e.g. RSIMT002">
+
+    <label>Session</label>
+    <input id="session" placeholder="e.g. 2026/2027">
+
+    <label>Semester</label>
+    <select id="semester">
+      <option>First</option>
+      <option>Second</option>
+    </select>
+
+    <label>Course</label>
+    <input id="course" placeholder="e.g. Information Technology">
+
+    <label>Score</label>
+    <input id="score" type="number" min="0" max="100" placeholder="0 - 100">
+
+    <button onclick="addResult()">Add Result</button>
+    <div id="result-message" class="message"></div>
+  </div>
+</main>
+
+<script>
+async function addStudent() {
+  const message = document.getElementById("student-message");
+  const body = {
+    studentId: document.getElementById("student-id").value,
+    fullName: document.getElementById("full-name").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value
+  };
+
+  const response = await fetch("/api/admin/students", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-key": document.getElementById("student-admin-key").value
+    },
+    body: JSON.stringify(body)
+  });
+
+  const data = await response.json();
+  message.textContent = data.message;
+}
+
+async function addResult() {
+  const message = document.getElementById("result-message");
+  const body = {
+    studentId: document.getElementById("result-student-id").value,
+    session: document.getElementById("session").value,
+    semester: document.getElementById("semester").value,
+    course: document.getElementById("course").value,
+    score: Number(document.getElementById("score").value)
+  };
+
+  const response = await fetch("/api/admin/results", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-key": document.getElementById("result-admin-key").value
+    },
+    body: JSON.stringify(body)
+  });
+
+  const data = await response.json();
+  message.textContent = data.message || ("Result added. Grade: " + data.grade);
+}
+async function addStaff() {
+  const message = document.getElementById("staff-message");
+
+  const body = {
+    staffId: document.getElementById("staff-id").value,
+    fullName: document.getElementById("staff-full-name").value,
+    email: document.getElementById("staff-email").value,
+    password: document.getElementById("staff-password").value
+  };
+
+  const response = await fetch("/api/admin/staff", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-key": document.getElementById("staff-admin-key").value
+    },
+    body: JSON.stringify(body)
+  });
+
+  const data = await response.json();
+  message.textContent = data.message;
+}
+</script>
+</body>
+</html>

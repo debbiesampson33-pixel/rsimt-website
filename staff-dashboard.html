@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Staff Dashboard | RSIMT</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .staff-dashboard {
+            min-height: 100vh;
+            background: #f7faf8;
+            padding: 60px 6%;
+        }
+
+        .staff-dashboard-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 45px;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+        }
+
+        .staff-dashboard-card h1 {
+            margin-bottom: 10px;
+        }
+
+        .staff-dashboard-card p {
+            color: #666;
+        }
+
+        .staff-welcome {
+            margin-bottom: 35px;
+        }
+
+        .staff-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .staff-action {
+            padding: 25px;
+            background: #f7faf8;
+            border: 1px solid #eeeeee;
+            border-radius: 14px;
+        }
+
+        .staff-action h3 {
+            color: #087f3f;
+            margin-bottom: 10px;
+        }
+
+        .staff-logout {
+            margin-top: 30px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 7px;
+            background: #087f3f;
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            .staff-dashboard {
+                padding: 40px 5%;
+            }
+
+            .staff-dashboard-card {
+                padding: 30px 22px;
+            }
+
+            .staff-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="staff-dashboard">
+
+        <div class="staff-dashboard-card">
+
+            <div class="staff-welcome">
+                <span>RSIMT STAFF SERVICES</span>
+
+                <h1 id="staff-name">
+                    Staff Dashboard
+                </h1>
+
+                <p id="staff-email"></p>
+
+                <p>
+                    Welcome to your RSIMT staff dashboard.
+                </p>
+            </div>
+
+
+            <div class="staff-actions">
+
+                <div class="staff-action">
+                    <h3>Staff Records</h3>
+                    <p>
+                        Access your staff information
+                        and records.
+                    </p>
+                </div>
+
+                <div class="staff-action">
+                    <h3>Academic Services</h3>
+                    <p>
+                        Access academic and
+                        teaching-related services.
+                    </p>
+                </div>
+
+                <div class="staff-action">
+                    <h3>Staff Information</h3>
+                    <p>
+                        View your designated
+                        staff information.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <button
+                class="staff-logout"
+                onclick="logoutStaff()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script>
+        const staffData = sessionStorage.getItem("staff");
+
+        if (!staffData) {
+            window.location.href = "staff-portal.html";
+        } else {
+            const staff = JSON.parse(staffData);
+
+            document.getElementById("staff-name").textContent =
+                staff.fullName || "Staff Dashboard";
+
+            document.getElementById("staff-email").textContent =
+                staff.email || "";
+        }
+
+        function logoutStaff() {
+            sessionStorage.removeItem("staff");
+            window.location.href = "staff-portal.html";
+        }
+    </script>
+
+</body>
+</html>

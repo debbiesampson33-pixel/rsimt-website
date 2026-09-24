@@ -1,0 +1,12 @@
+QUICK START
+1. Put these files with your existing student-portal.html and style.css.
+2. Add <script src="student-portal-login.js"></script> before </body> in student-portal.html.
+3. Run: npm install
+4. Run: npm start
+5. Open: http://localhost:3000/student-portal.html
+
+DEMO LOGIN
+Student ID: RSIMT001
+Password: Student@123
+
+This is a working starter backend. Before public/real use, change the demo account and use secure server-side sessions/cookies over HTTPS.
