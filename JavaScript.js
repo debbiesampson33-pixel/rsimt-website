@@ -1,4 +1,3 @@
-
 /* ==========================================
    RIGHT STEPS INCORPORATED
    MAIN JAVASCRIPT
@@ -19,46 +18,6 @@ if (menuButton && navbar) {
     });
 
 }
-
-
-/* ==========================================
-   HOME HERO SLIDER
-========================================== */
-
-const homeHeroImages = [
-    "myimages/homehero1.jpeg",
-    "myimages/homehero2.jpeg"
-];
-
-let homeHeroIndex = 0;
-
-const homeHeroImage =
-    document.getElementById("homeHeroImage");
-
-if (homeHeroImage && homeHeroImages.length > 1) {
-
-    setInterval(function () {
-
-        homeHeroImage.style.opacity = "0";
-
-        setTimeout(function () {
-
-            homeHeroIndex =
-                (homeHeroIndex + 1) %
-                homeHeroImages.length;
-
-            homeHeroImage.src =
-                homeHeroImages[homeHeroIndex];
-
-            homeHeroImage.style.opacity = "1";
-
-        }, 700);
-
-    }, 5000);
-
-}
-
-
 
 
 /* ==========================================
@@ -101,20 +60,23 @@ if (aboutHeroImage && aboutHeroImages.length > 1) {
     }, 5000);
 
 }
+
+
 /* ==========================================
    RSCS GALLERY - AUTOMATIC SLIDER
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const track = document.getElementById("rscsGalleryTrack");
+    const track =
+        document.getElementById("rscsGalleryTrack");
 
     if (!track) return;
 
-    const slides =
+    const gallerySlides =
         track.querySelectorAll(".rscs-gallery-slide");
 
-    if (slides.length <= 1) return;
+    if (gallerySlides.length <= 1) return;
 
     let current = 0;
 
@@ -122,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         current++;
 
-        if (current >= slides.length) {
+        if (current >= gallerySlides.length) {
             current = 0;
         }
 
@@ -135,3 +97,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+/* ==========================================
+   HOME HERO SLIDER
+========================================== */
+
+const slides =
+    document.querySelectorAll(".hero-slide");
+
+let currentSlide = 0;
+
+function showNextSlide() {
+
+    /* Stop if there are not enough slides */
+    if (slides.length < 2) return;
+
+    slides[currentSlide].classList.remove("active");
+
+    currentSlide =
+        (currentSlide + 1) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+}
+
+
+/* Start hero slider */
+if (slides.length > 1) {
+    setInterval(showNextSlide, 4000);
+}
+
+
+/* ==========================================
+   CONTACT FORM
+========================================== */
+
+const contactForm =
+    document.getElementById("contactForm");
+
+const formMessage =
+    document.getElementById("formMessage");
+
+
+/* Only run this code if the contact form
+   actually exists on the current page */
+if (contactForm && formMessage) {
+
+    contactForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const message =
+            document.getElementById("message").value.trim();
+
+
+        if (!name || !email || !message) {
+
+            formMessage.textContent =
+                "Please fill in all the fields.";
+
+            formMessage.style.color =
+                "#b00020";
+
+            return;
+        }
+
+
+        formMessage.textContent =
+            "Thank you, " + name +
+            ". Your message has been prepared successfully.";
+
+        formMessage.style.color =
+            "#087f3f";
+
+
+        contactForm.reset();
+
+    });
+
+}
