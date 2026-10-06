@@ -10865,3 +10865,19 @@ body {
 .site-footer h3 {
     text-align: left;
 }
+
+@media (max-width: 768px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+}
