@@ -7884,7 +7884,31 @@ body:has(.founder-hero) .founder-content h2 {
     font-size: 42px;
     line-height: 1.15;
 }
+/* =========================
+   FOUNDER PAGE MOBILE FIX
+========================= */
 
+@media (max-width: 768px) {
+
+    .founder-section,
+    .founder-content,
+    .founder-container {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .founder-image,
+    .founder-text {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .founder-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
 
 /* =========================================
    KEEP OTHER PAGES UNCHANGED
