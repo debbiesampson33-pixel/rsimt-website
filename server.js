@@ -203,3 +203,23 @@ app.get("/api/staff/students", (req, res) => {
 app.listen(PORT, () => {
   console.log("RSIMT portal: http://localhost:" + PORT);
 });
+
+
+const staffData = sessionStorage.getItem("staff");
+
+        if (!staffData) {
+            window.location.href = "staff-portal.html";
+        } else {
+            const staff = JSON.parse(staffData);
+
+            document.getElementById("staff-name").textContent =
+                staff.fullName || "Staff Dashboard";
+
+            document.getElementById("staff-email").textContent =
+                staff.email || "";
+        }
+
+        function logoutStaff() {
+            sessionStorage.removeItem("staff");
+            window.location.href = "staff-portal.html";
+        }

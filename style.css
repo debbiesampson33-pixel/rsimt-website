@@ -10881,3 +10881,58 @@ body {
     }
 
 }
+
+@media (max-width: 768px) {
+
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-contact {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .footer-links a {
+        margin: 8px 0;
+    }
+
+}
+
+/* MOBILE FOOTER FIX */
+
+@media (max-width: 768px) {
+
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 25px !important;
+        padding: 30px 20px !important;
+        text-align: center !important;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-contact {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .footer-links a,
+    .footer-contact a,
+    .footer-contact p,
+    .footer-brand p {
+        margin: 8px 0 !important;
+    }
+
+    .footer-links h3,
+    .footer-contact h3 {
+        margin-bottom: 10px !important;
+    }
+}
