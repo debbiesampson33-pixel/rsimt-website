@@ -200,21 +200,6 @@ app.get("/api/staff/students", (req, res) => {
   res.json(students);
 });
 
-const staffData = sessionStorage.getItem("staff");
 
-        if (!staffData) {
-            window.location.href = "staff-portal.html";
-        } else {
-            const staff = JSON.parse(staffData);
 
-            document.getElementById("staff-name").textContent =
-                staff.fullName || "Staff Dashboard";
-
-            document.getElementById("staff-email").textContent =
-                staff.email || "";
-        }
-
-        function logoutStaff() {
-            sessionStorage.removeItem("staff");
-            window.location.href = "staff-portal.html";
-        }
+       
