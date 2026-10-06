@@ -189,8 +189,15 @@ app.post("/api/admin/results", (req, res) => {
     numericScore,
     getGrade(numericScore)
   );
+res.json({ message: "Result added successfully.", grade: getGrade(numericScore) });
+});
 
-  res.json({ message: "Result added successfully.", grade: getGrade(numericScore) });
+app.get("/api/staff/students", (req, res) => {
+  const students = db.prepare(
+    "SELECT student_id, full_name, email FROM students ORDER BY full_name"
+  ).all();
+
+  res.json(students);
 });
 
 app.listen(PORT, () => {

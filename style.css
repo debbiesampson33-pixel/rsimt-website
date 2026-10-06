@@ -10605,3 +10605,60 @@ body.rscs-page .hero-image img {
         gap: 30px;
     }
 }
+
+/* ===== RSIMT PAGE FIX ===== */
+
+body {
+    overflow-x: hidden;
+}
+
+.site-header {
+    padding: 10px 4%;
+}
+
+.logo-area img {
+    width: 90px !important;
+    height: auto !important;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.work-to-learn,
+.online-services,
+.student-services,
+.staff-services {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.online-services-grid,
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    width: 100%;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
