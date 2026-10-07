@@ -135,6 +135,9 @@ app.post("/api/admin/students", (req, res) => {
     });
   }
 
+
+  
+
   try {
     db.prepare(
       "INSERT INTO students(student_id,full_name,email,password_hash) VALUES(?,?,?,?)"
@@ -152,6 +155,54 @@ app.post("/api/admin/students", (req, res) => {
     }
     res.status(500).json({ message: "Could not add student." });
   }
+});
+
+app.post("/api/admin/staff", (req, res) => {
+
+  const adminKey = req.headers["x-admin-key"];
+
+  if (adminKey !== "RSIMT-ADMIN-2026") {
+    return res.status(403).json({
+      message: "Invalid admin key."
+    });
+  }
+
+  const {
+    staffId,
+    fullName,
+    email,
+    password
+  } = req.body;
+
+  if (!staffId || !fullName || !email || !password) {
+    return res.status(400).json({
+      message: "All fields are required."
+    });
+  }
+
+  try {
+
+  db.prepare(
+  "INSERT INTO staff (staff_id, full_name, email, password_hash) VALUES (?, ?, ?, ?)"
+).run(
+  staffId,
+  fullName,
+  email,
+  hashPassword(password)
+);
+
+    res.json({
+      message: "Staff account created successfully."
+    });
+
+  } catch (error) {
+
+    res.status(400).json({
+      message: "Staff already exists."
+    });
+
+  }
+
 });
 
 // Add a result.
@@ -327,17 +378,7 @@ app.delete("/api/admin/staff/:staffId", (req, res) => {
   });
 
 });
-app.get("/api/students", (req, res) => {
 
-  const students = db.prepare(
-    "SELECT student_id, full_name, email FROM students ORDER BY full_name"
-  ).all();
-
-  res.json(students);
-
-});
-
-// View all students
 app.get("/api/students", (req, res) => {
 
   const students = db.prepare(`
