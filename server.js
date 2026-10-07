@@ -259,6 +259,19 @@ app.get("/api/students", (req, res) => {
 
 });
 
+// View all students
+app.get("/api/students", (req, res) => {
+
+  const students = db.prepare(`
+    SELECT student_id, full_name, email
+    FROM students
+    ORDER BY full_name
+  `).all();
+
+  res.json(students);
+
+});
+
 app.listen(PORT, () => {
   console.log("RSIMT portal: http://localhost:" + PORT);
 });
