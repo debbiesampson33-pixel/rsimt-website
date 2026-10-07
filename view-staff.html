@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Staff</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7f6;
+padding:30px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:15px;
+}
+
+h1{
+color:#087f3f;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#087f3f;
+color:white;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>All Staff</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Staff ID</th>
+<th>Full Name</th>
+<th>Email</th>
+</tr>
+</thead>
+
+<tbody id="staffTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+async function loadStaff(){
+
+const response = await fetch("/api/staff");
+
+const staff = await response.json();
+
+const table =
+document.getElementById("staffTable");
+
+table.innerHTML = "";
+
+staff.forEach(person => {
+
+table.innerHTML += `
+<tr>
+<td>${person.staff_id}</td>
+<td>${person.full_name}</td>
+<td>${person.email || ""}</td>
+</tr>
+`;
+
+});
+
+}
+
+loadStaff();
+
+</script>
+
+</body>
+</html>

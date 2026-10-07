@@ -200,6 +200,15 @@ app.get("/api/staff/students", (req, res) => {
   res.json(students);
 });
 
+app.get("/api/staff", (req, res) => {
+
+  const staff = db.prepare(
+    "SELECT staff_id, full_name, email FROM staff ORDER BY full_name"
+  ).all();
+
+  res.json(staff);
+
+});
 
 // Delete Student
 app.delete("/api/admin/students/:studentId", (req, res) => {
