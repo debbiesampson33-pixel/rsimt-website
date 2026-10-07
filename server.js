@@ -213,7 +213,7 @@ app.get("/api/staff", (req, res) => {
 app.get("/api/results", (req, res) => {
 
   const results = db.prepare(
-  "SELECT id, student_id, session, semester, course, score, grade FROM results ORDER BY id DESC"
+ "SELECT id, student_id, session, semester, course, score, grade FROM results ORDER BY id ASC"
   ).all();
 
   res.json(results);
