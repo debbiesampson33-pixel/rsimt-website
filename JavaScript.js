@@ -182,3 +182,16 @@ if (contactForm && formMessage) {
     });
 
 }
+
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+    reveals.forEach((item) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = item.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+            item.classList.add("active");
+        }
+    });
+});

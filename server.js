@@ -200,6 +200,6 @@ app.get("/api/staff/students", (req, res) => {
   res.json(students);
 });
 
-
-
-       
+app.listen(PORT, () => {
+  console.log("RSIMT portal: http://localhost:" + PORT);
+});
