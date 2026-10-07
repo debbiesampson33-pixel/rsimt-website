@@ -139,17 +139,17 @@ body{
 
 <div class="stat-card">
 <h3>Total Students</h3>
-<p>250</p>
+<p id="studentCount">0</p>
 </div>
 
 <div class="stat-card">
 <h3>Total Staff</h3>
-<p>35</p>
+<p id="staffCount">0</p>
 </div>
 
 <div class="stat-card">
 <h3>Results Uploaded</h3>
-<p>87</p>
+<p id="resultsCount">0</p>
 </div>
 
 <div class="stat-card">
@@ -287,6 +287,35 @@ sessionStorage.removeItem("staff");
 window.location.href="staff-portal.html";
 
 }
+
+async function loadStats(){
+
+try{
+
+const response =
+await fetch("/api/dashboard-stats");
+
+const stats =
+await response.json();
+
+document.getElementById("studentCount").textContent =
+stats.students;
+
+document.getElementById("staffCount").textContent =
+stats.staff;
+
+document.getElementById("resultCount").textContent =
+stats.results;
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+loadStats();
 
 </script>
 

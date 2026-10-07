@@ -220,6 +220,28 @@ app.get("/api/results", (req, res) => {
 
 });
 
+app.get("/api/dashboard-stats", (req, res) => {
+
+  const students = db.prepare(
+    "SELECT COUNT(*) AS total FROM students"
+  ).get();
+
+  const staff = db.prepare(
+    "SELECT COUNT(*) AS total FROM staff"
+  ).get();
+
+  const results = db.prepare(
+    "SELECT COUNT(*) AS total FROM results"
+  ).get();
+
+  res.json({
+    students: students.total,
+    staff: staff.total,
+    results: results.total
+  });
+
+});
+
 app.delete("/api/admin/results/:id", (req, res) => {
 
   const result = db.prepare(
