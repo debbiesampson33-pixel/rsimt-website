@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Delete Student</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+font-family:Arial;
+padding:40px;
+background:#f4f7f6;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+}
+
+button{
+width:100%;
+padding:12px;
+background:red;
+color:white;
+border:none;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>Delete Student</h2>
+
+<input
+type="text"
+id="studentId"
+placeholder="Enter Student ID">
+
+<button onclick="deleteStudent()">
+Delete Student
+</button>
+
+</div>
+
+<script>
+
+async function deleteStudent(){
+
+const studentId =
+document.getElementById("studentId").value.trim();
+
+if(!studentId){
+alert("Enter Student ID");
+return;
+}
+
+const response = await fetch(
+"/api/admin/students/" + studentId,
+{
+method:"DELETE",
+headers:{
+"x-admin-key":"RSIMT-ADMIN-2026"
+}
+});
+
+const data = await response.json();
+
+alert(data.message);
+
+}
+
+</script>
+
+</body>
+</html>
