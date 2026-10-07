@@ -210,6 +210,24 @@ app.get("/api/staff", (req, res) => {
 
 });
 
+app.delete("/api/admin/staff/:staffId", (req, res) => {
+
+  const result = db.prepare(
+    "DELETE FROM staff WHERE staff_id=?"
+  ).run(req.params.staffId);
+
+  if(result.changes === 0){
+    return res.status(404).json({
+      message:"Staff not found."
+    });
+  }
+
+  res.json({
+    message:"Staff deleted successfully."
+  });
+
+});
+
 // Delete Student
 app.delete("/api/admin/students/:studentId", (req, res) => {
 
