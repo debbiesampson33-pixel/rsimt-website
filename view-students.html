@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Students</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7f6;
+padding:30px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:15px;
+}
+
+h1{
+color:#087f3f;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#087f3f;
+color:white;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>All Students</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Student ID</th>
+<th>Full Name</th>
+<th>Email</th>
+</tr>
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+async function loadStudents(){
+
+const response = await fetch("/api/students");
+
+const students = await response.json();
+
+const table =
+document.getElementById("studentTable");
+
+table.innerHTML = "";
+
+students.forEach(student => {
+
+table.innerHTML += `
+<tr>
+<td>${student.student_id}</td>
+<td>${student.full_name}</td>
+<td>${student.email || ""}</td>
+</tr>
+`;
+
+});
+
+}
+
+loadStudents();
+
+</script>
+
+</body>
+</html>
