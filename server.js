@@ -225,6 +225,30 @@ app.delete("/api/admin/students/:studentId", (req, res) => {
   });
 
 });
+// Delete Staff
+app.delete("/api/admin/staff/:staffId", (req, res) => {
+
+  if (!adminAllowed(req)) {
+    return res.status(403).json({
+      message: "Invalid admin key."
+    });
+  }
+
+  const result = db.prepare(
+    "DELETE FROM staff WHERE staff_id=?"
+  ).run(req.params.staffId);
+
+  if (result.changes === 0) {
+    return res.status(404).json({
+      message: "Staff not found."
+    });
+  }
+
+  res.json({
+    message: "Staff deleted successfully."
+  });
+
+});
 
 app.listen(PORT, () => {
   console.log("RSIMT portal: http://localhost:" + PORT);

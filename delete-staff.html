@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Delete Staff</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h2>Delete Staff</h2>
+
+<input
+type="text"
+id="staffId"
+placeholder="Enter Staff ID">
+
+<button onclick="deleteStaff()">
+Delete Staff
+</button>
+
+<script>
+
+async function deleteStaff(){
+
+const staffId =
+document.getElementById("staffId").value.trim();
+
+const response = await fetch(
+"/api/admin/staff/" + staffId,
+{
+method:"DELETE",
+headers:{
+"x-admin-key":"RSIMT-ADMIN-2026"
+}
+});
+
+const data = await response.json();
+
+alert(data.message);
+
+}
+
+</script>
+
+</body>
+</html>
