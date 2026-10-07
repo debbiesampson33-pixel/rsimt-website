@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Results</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f7f6;
+padding:30px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:15px;
+}
+
+h1{
+color:#087f3f;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#087f3f;
+color:white;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>All Results</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Result ID</th>
+<th>Student ID</th>
+<th>Session</th>
+<th>Semester</th>
+<th>Course</th>
+<th>Score</th>
+<th>Grade</th>
+</tr>
+</thead>
+
+<tbody id="resultsTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+async function loadResults(){
+
+const response = await fetch("/api/results");
+
+const results = await response.json();
+
+const table =
+document.getElementById("resultsTable");
+
+table.innerHTML = "";
+
+results.forEach(result => {
+
+table.innerHTML += `
+<tr>
+<td>${result.id}</td>
+<td>${result.student_id}</td>
+<td>${result.session}</td>
+<td>${result.semester}</td>
+<td>${result.course}</td>
+<td>${result.score}</td>
+<td>${result.grade}</td>
+</tr>
+`;
+
+});
+
+}
+
+loadResults();
+
+</script>
+
+</body>
+</html>

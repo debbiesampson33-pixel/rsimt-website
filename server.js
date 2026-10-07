@@ -210,6 +210,35 @@ app.get("/api/staff", (req, res) => {
 
 });
 
+app.get("/api/results", (req, res) => {
+
+  const results = db.prepare(
+  "SELECT id, student_id, session, semester, course, score, grade FROM results ORDER BY id DESC"
+  ).all();
+
+  res.json(results);
+
+});
+
+app.delete("/api/admin/results/:id", (req, res) => {
+
+  const result = db.prepare(
+    "DELETE FROM results WHERE id=?"
+  ).run(req.params.id);
+
+  if(result.changes === 0){
+    return res.status(404).json({
+      message: "Result not found."
+    });
+  }
+
+  res.json({
+    message: "Result deleted successfully."
+  });
+
+});
+
+
 app.delete("/api/admin/staff/:staffId", (req, res) => {
 
   const result = db.prepare(
