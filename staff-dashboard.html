@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,143 +9,152 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-
 *{
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f7faf8;
+background:#f4f7f6;
 }
 
 .staff-dashboard{
-    min-height:100vh;
-    padding:60px 6%;
+padding:40px 5%;
 }
 
 .staff-dashboard-card{
-    max-width:1200px;
-    margin:auto;
-    background:#fff;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 12px 35px rgba(0,0,0,.08);
+max-width:1200px;
+margin:auto;
+background:#fff;
+padding:35px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 .staff-welcome{
-    margin-bottom:35px;
+margin-bottom:30px;
 }
 
 .staff-welcome span{
-    color:#087f3f;
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:2px;
+color:#087f3f;
+font-weight:bold;
+letter-spacing:2px;
+font-size:12px;
 }
 
 .staff-welcome h1{
-    margin:10px 0;
-    color:#087f3f;
+margin:10px 0;
+color:#087f3f;
 }
 
 .staff-welcome p{
-    color:#666;
+color:#666;
 }
 
 .dashboard-stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    margin-bottom:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin:30px 0;
 }
 
 .stat-card{
-    background:#f7faf8;
-    border:1px solid #eeeeee;
-    border-radius:14px;
-    padding:25px;
-    text-align:center;
+background:#f7faf8;
+padding:25px;
+border-radius:15px;
+text-align:center;
+border:1px solid #eee;
 }
 
 .stat-card h3{
-    color:#087f3f;
-    margin-bottom:10px;
+color:#087f3f;
+margin-bottom:10px;
 }
 
 .stat-card p{
-    font-size:28px;
-    font-weight:bold;
-    margin:0;
+font-size:30px;
+font-weight:bold;
 }
 
 .staff-actions{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .staff-action{
-    background:#f7faf8;
-    border:1px solid #eeeeee;
-    border-radius:14px;
-    padding:25px;
+background:#f7faf8;
+padding:25px;
+border-radius:15px;
+border:1px solid #eee;
 }
 
 .staff-action h3{
-    color:#087f3f;
-    margin-bottom:10px;
+color:#087f3f;
+margin-bottom:10px;
 }
 
 .staff-action p{
-    color:#666;
-    line-height:1.6;
+margin-bottom:15px;
+color:#666;
+}
+
+.staff-action button{
+width:100%;
+padding:12px;
+border:none;
+background:#087f3f;
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.staff-action button:hover{
+background:#066a34;
 }
 
 .staff-profile{
-    margin-top:40px;
-    padding:25px;
-    background:#f7faf8;
-    border-radius:14px;
-    border:1px solid #eeeeee;
+margin-top:35px;
+background:#f7faf8;
+padding:25px;
+border-radius:15px;
+border:1px solid #eee;
 }
 
 .staff-profile h2{
-    color:#087f3f;
+color:#087f3f;
+margin-bottom:15px;
 }
 
 .staff-profile p{
-    margin:10px 0;
+margin-bottom:10px;
 }
 
 .staff-logout{
-    margin-top:35px;
-    padding:14px 24px;
-    border:none;
-    border-radius:8px;
-    background:#087f3f;
-    color:white;
-    font-weight:700;
-    cursor:pointer;
+margin-top:30px;
+padding:14px 25px;
+border:none;
+background:#d32f2f;
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
 }
 
 .staff-logout:hover{
-    background:#066a34;
+background:#b71c1c;
 }
 
 @media(max-width:768px){
 
-    .staff-dashboard{
-        padding:40px 5%;
-    }
-
-    .staff-dashboard-card{
-        padding:25px;
-    }
-
+.staff-dashboard-card{
+padding:20px;
 }
 
+}
 </style>
 </head>
 
@@ -158,14 +166,14 @@ body{
 
 <div class="staff-welcome">
 
-<span>RSIMT STAFF SERVICES</span>
+<span>RSIMT STAFF MANAGEMENT SYSTEM</span>
 
 <h1 id="staff-name">Staff Dashboard</h1>
 
 <p id="staff-email"></p>
 
 <p>
-Welcome to your RSIMT staff dashboard.
+Welcome to the RSIMT Staff Management Dashboard.
 </p>
 
 </div>
@@ -178,8 +186,8 @@ Welcome to your RSIMT staff dashboard.
 </div>
 
 <div class="stat-card">
-<h3>Courses</h3>
-<p>12</p>
+<h3>Total Staff</h3>
+<p>25</p>
 </div>
 
 <div class="stat-card">
@@ -197,48 +205,53 @@ Welcome to your RSIMT staff dashboard.
 <div class="staff-actions">
 
 <div class="staff-action">
-<h3>Staff Profile</h3>
-<p>View and manage your personal staff information.</p>
+<h3>➕ Add Student</h3>
+<p>Create new student accounts.</p>
+<button onclick="location.href='admin-add-student.html'">
+Open
+</button>
 </div>
 
 <div class="staff-action">
-<h3>Student Management</h3>
-<p>View, search and manage student records.</p>
+<h3>📋 View Students</h3>
+<p>View all registered students.</p>
+<button>Open</button>
 </div>
 
 <div class="staff-action">
-<h3>Result Management</h3>
-<p>Upload, edit and review student results.</p>
+<h3>🗑 Delete Student</h3>
+<p>Remove student records.</p>
+<button>Coming Soon</button>
 </div>
 
 <div class="staff-action">
-<h3>Attendance</h3>
-<p>Record and monitor attendance activities.</p>
+<h3>➕ Add Staff</h3>
+<p>Create new staff accounts.</p>
+<button>Coming Soon</button>
 </div>
 
 <div class="staff-action">
-<h3>Announcements</h3>
-<p>Create notices and updates for students.</p>
+<h3>🗑 Delete Staff</h3>
+<p>Remove staff records.</p>
+<button>Coming Soon</button>
 </div>
 
 <div class="staff-action">
-<h3>Timetable</h3>
-<p>View academic schedules and class timetables.</p>
+<h3>📊 Result Management</h3>
+<p>Upload and manage student results.</p>
+<button>Open</button>
 </div>
 
 <div class="staff-action">
-<h3>Academic Services</h3>
-<p>Access teaching and academic resources.</p>
+<h3>📢 Announcements</h3>
+<p>Create school announcements.</p>
+<button>Open</button>
 </div>
 
 <div class="staff-action">
-<h3>Documents</h3>
-<p>Manage reports and institutional documents.</p>
-</div>
-
-<div class="staff-action">
-<h3>Settings</h3>
-<p>Update account settings and preferences.</p>
+<h3>📚 Academic Services</h3>
+<p>Access teaching resources.</p>
+<button>Open</button>
 </div>
 
 </div>
@@ -247,7 +260,7 @@ Welcome to your RSIMT staff dashboard.
 
 <h2>Staff Profile</h2>
 
-<p><strong>Name:</strong> Demo Staff</p>
+<p><strong>Name:</strong> <span id="profile-name">Staff Member</span></p>
 
 <p><strong>Staff ID:</strong> RSIMT-STF-001</p>
 
@@ -255,7 +268,92 @@ Welcome to your RSIMT staff dashboard.
 
 <p><strong>Position:</strong> Lecturer</p>
 
-<p><strong>Email:</strong> staff@example.com</p>
+<p><strong>Email:</strong> <span id="profile-email">staff@example.com</span></p>
+
+</div>
+<!-- STUDENT MANAGEMENT -->
+
+<div class="staff-profile">
+
+<h2>Student Management</h2>
+
+<p>Total Students: 250</p>
+
+<button class="staff-logout">
+Add Student
+</button>
+
+<button class="staff-logout">
+Remove Student
+</button>
+
+<button class="staff-logout">
+View Students
+</button>
+
+</div>
+
+<!-- RESULT MANAGEMENT -->
+
+<div class="staff-profile">
+
+<h2>Result Management</h2>
+
+<p>Manage student academic records.</p>
+
+<button class="staff-logout">
+Upload Result
+</button>
+
+<button class="staff-logout">
+Edit Result
+</button>
+
+<button class="staff-logout">
+Delete Result
+</button>
+
+</div>
+
+<!-- STAFF MANAGEMENT -->
+
+<div class="staff-profile">
+
+<h2>Staff Management</h2>
+
+<p>Manage RSIMT staff records.</p>
+
+<button class="staff-logout">
+Add Staff
+</button>
+
+<button class="staff-logout">
+Remove Staff
+</button>
+
+<button class="staff-logout">
+View Staff
+</button>
+
+</div>
+
+<!-- RECENT ACTIVITIES -->
+
+<div class="staff-profile">
+
+<h2>Recent Activities</h2>
+
+<ul>
+
+<li>New student registered.</li>
+
+<li>Results uploaded successfully.</li>
+
+<li>Staff profile updated.</li>
+
+<li>Academic notice published.</li>
+
+</ul>
 
 </div>
 
@@ -275,25 +373,31 @@ const staffData = sessionStorage.getItem("staff");
 
 if(!staffData){
 
-    window.location.href = "staff-portal.html";
+window.location.href="staff-portal.html";
 
 }else{
 
-    const staff = JSON.parse(staffData);
+const staff = JSON.parse(staffData);
 
-    document.getElementById("staff-name").textContent =
-        staff.fullName || "Staff Dashboard";
+document.getElementById("staff-name").textContent =
+staff.fullName || "Staff Dashboard";
 
-    document.getElementById("staff-email").textContent =
-        staff.email || "";
+document.getElementById("staff-email").textContent =
+staff.email || "";
+
+document.getElementById("profile-name").textContent =
+staff.fullName || "Staff Member";
+
+document.getElementById("profile-email").textContent =
+staff.email || "";
 
 }
 
 function logoutStaff(){
 
-    sessionStorage.removeItem("staff");
+sessionStorage.removeItem("staff");
 
-    window.location.href = "staff-portal.html";
+window.location.href="staff-portal.html";
 
 }
 

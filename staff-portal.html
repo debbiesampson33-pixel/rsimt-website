@@ -1,260 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Staff Portal | RSIMT</title>
+<title>RSIMT Staff Portal</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+.portal-main{
+    min-height:100vh;
+    padding:80px 20px;
+    background:#f5f7fa;
+}
+
+.portal-card{
+    max-width:1100px;
+    margin:auto;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.portal-banner{
+    background:linear-gradient(135deg,#087f3f,#0aa954);
+    color:#fff;
+    padding:50px 40px;
+    text-align:center;
+}
+
+.portal-banner h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.portal-banner p{
+    max-width:700px;
+    margin:auto;
+    line-height:1.7;
+}
+
+.portal-services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:40px;
+}
+
+.portal-service{
+    background:#f8f8f8;
+    border-radius:15px;
+    padding:25px;
+    transition:.3s;
+}
+
+.portal-service:hover{
+    transform:translateY(-5px);
+}
+
+.portal-service h3{
+    color:#087f3f;
+    margin-bottom:10px;
+}
+
+.portal-notice{
+    margin:0 40px 30px;
+    background:#eef8f2;
+    border-left:5px solid #087f3f;
+    padding:18px;
+    border-radius:10px;
+}
+
+.portal-form{
+    padding:0 40px 40px;
+}
+
+.portal-form h2{
+    margin-bottom:20px;
+}
+
+.portal-form-group{
+    margin-bottom:20px;
+}
+
+.portal-form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.portal-form-group input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.portal-button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#087f3f;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.portal-button:hover{
+    background:#066632;
+}
+
+@media(max-width:768px){
+
+.portal-banner{
+    padding:35px 20px;
+}
+
+.portal-banner h1{
+    font-size:30px;
+}
+
+.portal-services{
+    padding:20px;
+}
+
+.portal-notice{
+    margin:20px;
+}
+
+.portal-form{
+    padding:20px;
+}
+}
+</style>
+
 </head>
-
 <body>
 
-    <!-- HEADER -->
-    <header class="portal-header">
+<header class="portal-header">
 
-        <a href="rsimt.html" class="portal-logo">
-            RSIMT
-        </a>
+<a href="rsimt.html" class="portal-logo">
+RSIMT
+</a>
 
-        <a href="rsimt.html" class="portal-back">
-            ← Back to RSIMT
-        </a>
+<a href="rsimt.html" class="portal-back">
+← Back to RSIMT
+</a>
 
-    </header>
+</header>
 
+<main class="portal-main">
 
-    <!-- STAFF PORTAL -->
-    <main class="portal-main">
+<div class="portal-card">
 
-        <div class="portal-card">
+<div class="portal-banner">
 
-            <div class="portal-heading">
+<h1>RSIMT Staff Portal</h1>
 
-                <span>RSIMT ONLINE SERVICES</span>
+<p>
+Welcome to the RSIMT Staff Management System.
+Authorized staff members can access student records,
+academic services, result management and institutional resources.
+</p>
 
-                <h1>Staff Portal</h1>
+</div>
 
-                <p>
-                    Access RSIMT staff services
-                    from one convenient place.
-                </p>
+<div class="portal-services">
 
-            </div>
+<div class="portal-service">
+<h3>Student Records</h3>
+<p>View and manage student information.</p>
+</div>
 
+<div class="portal-service">
+<h3>Result Management</h3>
+<p>Upload and manage academic results.</p>
+</div>
 
-            <!-- STAFF SERVICES -->
-            <div class="portal-services">
+<div class="portal-service">
+<h3>Academic Services</h3>
+<p>Access teaching and departmental resources.</p>
+</div>
 
-                <div class="portal-service">
+<div class="portal-service">
+<h3>Staff Profile</h3>
+<p>Manage staff details and information.</p>
+</div>
 
-                    <h3>Staff Records</h3>
+<div class="portal-service">
+<h3>Announcements</h3>
+<p>View important school updates and notices.</p>
+</div>
 
-                    <p>
-                        Access staff information
-                        and records.
-                    </p>
+<div class="portal-service">
+<h3>Attendance</h3>
+<p>Manage attendance and academic records.</p>
+</div>
 
-                </div>
+</div>
 
+<div class="portal-notice">
 
-                <div class="portal-service">
+<strong>Staff Access Only</strong>
 
-                    <h3>Academic Services</h3>
+<p>
+This portal is restricted to authorized RSIMT staff members.
+Unauthorized access is prohibited.
+</p>
 
-                    <p>
-                        Access academic and
-                        teaching-related services.
-                    </p>
+</div>
 
-                </div>
+<div class="portal-form">
 
+<h2>Staff Login</h2>
 
-                <div class="portal-service">
+<form id="staff-login-form">
 
-                    <h3>Staff Information</h3>
+<div class="portal-form-group">
 
-                    <p>
-                        Manage your designated
-                        staff information.
-                    </p>
+<label for="staff-id">Staff ID</label>
 
-                </div>
+<input
+type="text"
+id="staff-id"
+placeholder="Enter Staff ID"
+required>
 
-            </div>
+</div>
 
+<div class="portal-form-group">
 
-            <!-- STAFF LOGIN -->
-            <div class="portal-form">
+<label for="staff-password">Password</label>
 
-                <h2>Staff Login</h2>
+<input
+type="password"
+id="staff-password"
+placeholder="Enter Password"
+required>
 
-               <form id="staff-login-form">
+</div>
 
-                    <div class="portal-form-group">
+<button
+type="submit"
+class="portal-button">
+Login
+</button>
 
-                        <label for="staff-id">
-                            Staff ID
-                        </label>
+</form>
 
-                        <input
-                            type="text"
-                            id="staff-id"
-                            placeholder="Enter your Staff ID"
-                            required
-                        >
+</div>
 
-                    </div>
+</div>
 
+</main>
 
-                    <div class="portal-form-group">
+<footer class="site-footer">
 
-                        <label for="staff-password">
-                            Password
-                        </label>
+<div class="footer-content">
 
-                        <input
-                            type="password"
-                            id="staff-password"
-                            placeholder="Enter your password"
-                            required
-                        >
+<div class="footer-brand">
+<h2>RIGHT STEPS</h2>
 
-                    </div>
+<p>
+Building people, building communities through education,
+faith, practical skills and service.
+</p>
 
+</div>
 
-                    <button
-                        type="submit"
-                        class="portal-button"
-                    >
-                        Staff Login
-                    </button>
+<div class="footer-links">
 
-                </form>
+<h3>Quick Links</h3>
 
-            </div>
+<a href="index.html">Home</a>
+<a href="about.html">About Us</a>
+<a href="rsimt.html">RSIMT</a>
+<a href="institutions.html">Institutions</a>
+<a href="contact.html">Contact</a>
 
-        </div>
+</div>
 
-    </main>
+<div class="footer-links">
 
+<h3>RSIMT</h3>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
+<a href="student-portal.html">Student Portal</a>
+<a href="staff-portal.html">Staff Portal</a>
+<a href="founder.html">Our Founder</a>
 
-        <div class="footer-content">
+</div>
 
-            <div class="footer-brand">
+</div>
 
-                <h2>RIGHT STEPS</h2>
+<div class="footer-bottom">
 
-                <p>
-                    Building people, building communities
-                    through education, faith, practical
-                    skills and service.
-                </p>
+<p>
+© 2026 Right Steps Incorporated.
+All Rights Reserved.
+</p>
 
-            </div>
+</div>
 
+</footer>
 
-            <div class="footer-links">
 
-                <h3>Quick Links</h3>
 
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="rsimt.html">RSIMT</a>
-                <a href="institutions.html">Institutions</a>
-                <a href="contact.html">Contact</a>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h3>RSIMT</h3>
-
-                <a href="student-portal.html">
-                    Student Portal
-                </a>
-
-                <a href="result-checker.html">
-                    Result Checker
-                </a>
-
-                <a href="staff-portal.html">
-                    Staff Portal
-                </a>
-
-                <a href="founder.html">
-                    Our Founder
-                </a>
-
-            </div>
-
-
-            <div class="footer-contact">
-
-                <h3>Contact</h3>
-
-                <p>Right Steps Incorporated</p>
-
-                <p>Nigeria</p>
-
-                <a href="contact.html">
-                    Contact Us →
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 Right Steps Incorporated.
-                All Rights Reserved.
-            </p>
-
-        </div>
-
-    </footer>
-
-<script>
-document.getElementById("staff-login-form").addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const staffId = document.getElementById("staff-id").value.trim();
-    const password = document.getElementById("staff-password").value;
-
-    try {
-        const response = await fetch("/api/staff/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                staffId: staffId,
-                password: password
-            })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            alert(data.message || "Login failed.");
-            return;
-        }
-
-        sessionStorage.setItem("staff", JSON.stringify(data.staff));
-
-        window.location.href = "staff-dashboard.html";
-    } catch (error) {
-        alert("Unable to connect to the server.");
-    }
-});
-</script>
 </body>
 </html>

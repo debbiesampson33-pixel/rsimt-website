@@ -195,3 +195,50 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
+
+document.getElementById("staff-login-form").addEventListener("submit", async function(event){
+
+event.preventDefault();
+
+const staffId =
+document.getElementById("staff-id").value.trim();
+
+const password =
+document.getElementById("staff-password").value;
+
+try{
+
+const response = await fetch("/api/staff/login",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+staffId,
+password
+})
+});
+
+const data = await response.json();
+
+if(!response.ok){
+alert(data.message || "Login failed");
+return;
+}
+
+sessionStorage.setItem(
+"staff",
+JSON.stringify(data.staff)
+);
+
+window.location.href =
+"staff-dashboard.html";
+
+}catch(error){
+
+alert("Unable to connect to server");
+
+}
+
+});
