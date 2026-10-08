@@ -292,13 +292,18 @@ app.get("/api/dashboard-stats", (req, res) => {
   });
 
 });
-
 app.delete("/api/admin/results/:id", (req, res) => {
+
+  if (!adminAllowed(req)) {
+    return res.status(403).json({
+      message: "Invalid admin key."
+    });
+  }
 
   const result = db.prepare(
     "DELETE FROM results WHERE id=?"
   ).run(req.params.id);
-
+  
   if(result.changes === 0){
     return res.status(404).json({
       message: "Result not found."

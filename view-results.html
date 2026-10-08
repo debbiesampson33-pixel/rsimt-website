@@ -62,6 +62,7 @@ color:white;
 <th>Course</th>
 <th>Score</th>
 <th>Grade</th>
+<th>Action</th>
 </tr>
 </thead>
 
@@ -95,10 +96,31 @@ table.innerHTML += `
 <td>${result.course}</td>
 <td>${result.score}</td>
 <td>${result.grade}</td>
+<td>
+<button onclick="deleteResult(${result.id})">
+Delete
+</button>
+</td>
 </tr>
 `;
 
 });
+
+}
+
+async function deleteResult(resultId){
+
+const response = await fetch(
+"/api/admin/results/" + resultId,
+{
+method:"DELETE"
+});
+
+const data = await response.json();
+
+alert(data.message);
+
+loadResults();
 
 }
 

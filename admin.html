@@ -26,8 +26,41 @@
 </header>
 
 <main>
-  <div class="card">
-    <h1>Add Student</h1>
+
+ 
+
+<div class="card">
+  <h2>Dashboard Statistics</h2>
+
+  <p><strong>Total Students:</strong>
+    <span id="student-count">0</span>
+  </p>
+
+  <p><strong>Total Staff:</strong>
+    <span id="staff-count">0</span>
+  </p>
+
+  <p><strong>Total Results:</strong>
+    <span id="result-count">0</span>
+  </p>
+
+  <br>
+
+  <a href="view-students.html">
+    <button type="button">View Students</button>
+  </a>
+
+  <a href="view-staff.html">
+    <button type="button">View Staff</button>
+  </a>
+
+  <a href="view-results.html">
+    <button type="button">View Results</button>
+  </a>
+</div>
+
+<div class="card">
+  <h1>Add Student</h1>
     <p class="hint">Enter the student's account details. They can then use these details on Student Portal.</p>
 
     <label>Admin Key</label>
@@ -101,8 +134,31 @@
 </main>
 
 <script>
+
+
+
+
+async function loadDashboardStats() {
+
+  const response = await fetch("/api/dashboard-stats");
+
+  const stats = await response.json();
+
+  document.getElementById("student-count").textContent =
+    stats.students;
+
+  document.getElementById("staff-count").textContent =
+    stats.staff;
+
+  document.getElementById("result-count").textContent =
+    stats.results;
+}
+
+loadDashboardStats();
+
 async function addStudent() {
   const message = document.getElementById("student-message");
+
   const body = {
     studentId: document.getElementById("student-id").value,
     fullName: document.getElementById("full-name").value,
@@ -123,28 +179,6 @@ async function addStudent() {
   message.textContent = data.message;
 }
 
-async function addResult() {
-  const message = document.getElementById("result-message");
-  const body = {
-    studentId: document.getElementById("result-student-id").value,
-    session: document.getElementById("session").value,
-    semester: document.getElementById("semester").value,
-    course: document.getElementById("course").value,
-    score: Number(document.getElementById("score").value)
-  };
-
-  const response = await fetch("/api/admin/results", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-admin-key": document.getElementById("result-admin-key").value
-    },
-    body: JSON.stringify(body)
-  });
-
-  const data = await response.json();
-  message.textContent = data.message || ("Result added. Grade: " + data.grade);
-}
 async function addStaff() {
   const message = document.getElementById("staff-message");
 
@@ -167,6 +201,32 @@ async function addStaff() {
   const data = await response.json();
   message.textContent = data.message;
 }
+
+async function addResult() {
+  const message = document.getElementById("result-message");
+
+  const body = {
+    studentId: document.getElementById("result-student-id").value,
+    session: document.getElementById("session").value,
+    semester: document.getElementById("semester").value,
+    course: document.getElementById("course").value,
+    score: Number(document.getElementById("score").value)
+  };
+
+  const response = await fetch("/api/admin/results", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-key": document.getElementById("result-admin-key").value
+    },
+    body: JSON.stringify(body)
+  });
+
+  const data = await response.json();
+  message.textContent =
+    data.message || ("Result added. Grade: " + data.grade);
+}
+
 </script>
 </body>
 </html>
