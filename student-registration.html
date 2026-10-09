@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Application | RIGHT STEPS INC.</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f7f4;color:#20332a;font:16px Arial,sans-serif}header{background:#075b36;color:#fff;padding:24px 6%}header a{color:white}main{max-width:1000px;margin:28px auto;padding:0 16px}.intro,.panel{background:#fff;padding:24px;border-radius:14px;margin-bottom:18px;box-shadow:0 5px 20px #1231}.intro h1{margin-top:0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}label{display:block;font-weight:700;margin:10px 0 6px}input,select,textarea{width:100%;padding:11px;border:1px solid #c9d5cd;border-radius:7px;font:inherit}textarea{min-height:100px}button{background:#087f3f;color:white;border:0;padding:13px 20px;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:16px}.notice{color:#5c6b62;font-size:14px}.message{font-weight:bold;margin-top:14px;white-space:pre-wrap}.required{color:#b00}@media(max-width:600px){.panel,.intro{padding:16px}}
+</style></head><body>
+<header><strong>RIGHT STEPS INC.</strong><p>RSIMT — Right Steps Institute of Management and Technology</p><a href="rsimt.html">← Back to RSIMT website</a></header>
+<main><section class="intro"><h1>Student Application Form</h1><p>Apply to RSIMT. Jan and Sue Blackwell Institute for Biblical Studies (JSB) information is included because JSB is compulsory for every student.</p><p class="notice">Submit this form once. Your application will remain pending until an authorised staff member reviews it. Do not enter a password or bank details here.</p></section>
+<form id="application-form">
+<section class="panel"><h2>1. Personal information</h2><div class="grid">
+<div><label>Full name (surname first) *</label><input name="fullName" required placeholder="e.g. Okafor Ada Grace"></div>
+<div><label>Date of birth</label><input name="dob" type="date"></div><div><label>Gender</label><select name="gender"><option value="">Choose</option><option>Female</option><option>Male</option><option>Prefer not to say</option></select></div>
+<div><label>State of origin</label><input name="stateOfOrigin"></div><div><label>LGA</label><input name="lga"></div><div><label>Village / town</label><input name="village"></div>
+<div><label>Email</label><input name="email" type="email"></div><div><label>Phone number *</label><input name="phone" required type="tel"></div>
+<div><label>Residential address</label><input name="address"></div></div></section>
+<section class="panel"><h2>2. Parent or guardian</h2><div class="grid"><div><label>Full name</label><input name="guardianName"></div><div><label>Relationship</label><input name="guardianRelationship"></div><div><label>Phone number</label><input name="guardianPhone" type="tel"></div></div></section>
+<section class="panel"><h2>3. Previous education</h2><div class="grid"><div><label>Previous school</label><input name="previousSchool"></div><div><label>Qualifications and examination results</label><textarea name="qualifications" placeholder="WAEC, NECO, GCE, SSCE, etc."></textarea></div></div></section>
+<section class="panel"><h2>4. RSIMT programme</h2><div class="grid"><div><label>Programme you are applying for *</label><input name="programme" required placeholder="e.g. Computer Software Engineering Technology"></div><div><label>Department</label><input name="department"></div><div><label>Level</label><select name="level"><option value="">Choose</option><option>Year 1</option><option>Year 2</option><option>Other</option></select></div><div><label>Admission session *</label><input name="session" required placeholder="e.g. 2026/2027"></div></div></section>
+<section class="panel"><h2>5. Compulsory JSB information</h2><div class="grid"><div><label>Biblical studies / course area</label><input name="jsbCourse" placeholder="If known"></div><div><label>Skills you are interested in</label><textarea name="skillsInterests" placeholder="Caregiving, electrical, garment/textile, carpentry, etc."></textarea></div><div><label>Service interests</label><textarea name="serviceInterests" placeholder="Singing, evangelism, charity, church planting, volunteering, etc."></textarea></div></div><label>Write briefly about your Christian life or journey</label><textarea name="christianJourney"></textarea></section>
+<section class="panel"><h2>6. Final check</h2><label><input type="checkbox" required style="width:auto"> I confirm that the information I supplied is true to the best of my knowledge.</label><p class="notice">This starter form records the passport filename only; it does not upload or store an actual photo or certificate. Give original documents to the school as instructed.</p><button type="submit">Submit application</button><div id="message" class="message" role="status"></div></section>
+</form></main>
+<script>
+const form=document.getElementById('application-form');
+form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('button');btn.disabled=true;btn.textContent='Submitting…';
+const data=Object.fromEntries(new FormData(form).entries());
+try{const r=await fetch('/api/applications',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const out=await r.json();document.getElementById('message').textContent=r.ok?`${out.message}\nApplication number: ${out.applicationNo}`:(out.message||'Submission failed.');if(r.ok)form.reset();}
+catch{document.getElementById('message').textContent='Could not connect to the school server. Please check your internet and try again.';}
+finally{btn.disabled=false;btn.textContent='Submit application';}});
+</script></body></html>

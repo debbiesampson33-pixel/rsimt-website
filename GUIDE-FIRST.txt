@@ -1,0 +1,54 @@
+RSIMT / RIGHT STEPS INC. — UPDATED STARTER PACKAGE
+==================================================
+
+WHAT WAS ADDED
+- student-registration.html: online application form for RSIMT and compulsory JSB information.
+- application-review.html: admin page to review, approve, reject, or leave applications pending, and review student letters/requests.
+- student-letters.html: student form for leave requests, travel requests, complaints, and other correspondence.
+- server.js: database tables and API routes for applications and correspondence.
+- admin.html: link to the new review page.
+
+IMPORTANT LIMITATIONS
+1. This is a starter management workflow, not yet a complete production student information system.
+2. Passport images and certificates are NOT uploaded by this form. The page tells applicants to provide documents to the school.
+3. Application approval creates a student login with a temporary password shown once in the admin review result. Copy it and give it privately to the student. If it is lost, an administrator will need to create/reset the account manually.
+4. The existing student/staff login routes are basic and do not establish a secure login session. Do not use this system to store highly sensitive records until proper authentication, permissions, backups, and privacy safeguards are implemented.
+5. The current server code contains an old fallback admin key. Set a strong ADMIN_KEY in Render and update the key in local use. Never publish or share it. This starter update does not make the whole website production-secure.
+6. The SQLite database is local to the running service. On Render, confirm persistent disk/database backup arrangements before relying on records long-term; redeploys or service changes can risk data if storage is not persistent.
+7. Existing student/staff/results pages and the public website are retained. The original database file is included in this working copy.
+
+HOW TO USE LOCALLY (WINDOWS)
+1. Keep your original RSIMT-WEBSITE-A folder as a backup.
+2. Extract this ZIP to a NEW folder, for example Desktop\RSIMT-WEBSITE-UPDATED.
+3. Open that folder in VS Code.
+4. Open Terminal > New Terminal.
+5. Run:
+      npm install
+      npm start
+6. Open these pages in your browser:
+      http://localhost:3000/rsimt.html
+      http://localhost:3000/student-registration.html
+      http://localhost:3000/student-letters.html
+      http://localhost:3000/admin.html
+      http://localhost:3000/application-review.html
+
+HOW TO PUT THE CHANGES ONLINE USING GITHUB DESKTOP
+1. Do not copy this folder over your original project until you have a backup.
+2. The ZIP deliberately excludes the .git folder and node_modules, so do NOT try to use this extracted folder as a GitHub Desktop repository directly.
+3. Safest route: copy the new files student-registration.html, application-review.html, student-letters.html, and the updated server.js and admin.html into your existing RSIMT-WEBSITE-A repository folder. Keep the existing package.json and package-lock.json.
+4. Before replacing server.js or admin.html, make a backup copy of each.
+5. Open GitHub Desktop. Review the changed files. Commit with a message such as:
+      Add student application and correspondence workflow
+6. Push to origin. Render should deploy automatically if it is connected to that GitHub repository.
+7. After deployment, test the public application page and the admin review page. Enter the same server admin key configured in Render's Environment settings.
+8. Submit a test application using clearly fake test details first. Confirm it appears in application-review.html. Approve only a test record and make sure the temporary credentials are recorded privately.
+9. Never use real student information for testing.
+
+RENDER ADMIN KEY
+- Render Dashboard > rsimt-website > Environment.
+- Add or change environment variable ADMIN_KEY to a long, unique secret that is not used elsewhere.
+- Save changes and redeploy if Render asks.
+- Use this same secret in the admin page. Do not put it into public HTML or send it to students.
+
+PLEASE NOTE
+This update does not change the existing public website's design or add actual file uploads, automated email/SMS, payment processing, or full secure student/staff account management. Those require additional work and testing before real institutional use.

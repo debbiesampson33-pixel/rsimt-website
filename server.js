@@ -396,6 +396,137 @@ app.get("/api/students", (req, res) => {
 
 });
 
+
+// Unified RSIMT + compulsory JSB student application and correspondence system.
+db.exec(`
+CREATE TABLE IF NOT EXISTS applications (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  application_no TEXT UNIQUE NOT NULL,
+  status TEXT NOT NULL DEFAULT 'Pending',
+  submitted_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  full_name TEXT NOT NULL,
+  dob TEXT, gender TEXT, state_of_origin TEXT, lga TEXT, village TEXT,
+  address TEXT, email TEXT, phone TEXT,
+  guardian_name TEXT, guardian_relationship TEXT, guardian_phone TEXT,
+  previous_school TEXT, qualifications TEXT,
+  programme TEXT, department TEXT, level TEXT, session TEXT,
+  jsb_course TEXT, skills_interests TEXT, service_interests TEXT,
+  christian_journey TEXT, passport_filename TEXT, notes TEXT
+);
+CREATE TABLE IF NOT EXISTS student_letters (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  student_id TEXT NOT NULL,
+  student_name TEXT NOT NULL,
+  letter_type TEXT NOT NULL,
+  subject TEXT NOT NULL,
+  details TEXT NOT NULL,
+  submitted_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  status TEXT NOT NULL DEFAULT 'Pending',
+  admin_remarks TEXT
+);
+`);
+
+function clean(value, max = 4000) {
+  return String(value ?? "").trim().slice(0, max);
+}
+
+app.post("/api/applications", (req, res) => {
+  const b = req.body || {};
+  const fullName = clean(b.fullName, 180);
+  if (!fullName || !clean(b.phone, 40) || !clean(b.programme, 180) || !clean(b.session, 30)) {
+    return res.status(400).json({ message: "Please complete full name, phone, RSIMT programme and session." });
+  }
+  const applicationNo = "APP-" + Date.now().toString(36).toUpperCase() + "-" + crypto.randomBytes(2).toString("hex").toUpperCase();
+  try {
+    db.prepare(`INSERT INTO applications (
+      application_no, full_name, dob, gender, state_of_origin, lga, village, address, email, phone,
+      guardian_name, guardian_relationship, guardian_phone, previous_school, qualifications,
+      programme, department, level, session, jsb_course, skills_interests, service_interests,
+      christian_journey, passport_filename
+    ) VALUES (
+      @application_no, @full_name, @dob, @gender, @state_of_origin, @lga, @village, @address, @email, @phone,
+      @guardian_name, @guardian_relationship, @guardian_phone, @previous_school, @qualifications,
+      @programme, @department, @level, @session, @jsb_course, @skills_interests, @service_interests,
+      @christian_journey, @passport_filename
+    )`).run({
+      application_no: applicationNo, full_name: fullName, dob: clean(b.dob, 20), gender: clean(b.gender, 30),
+      state_of_origin: clean(b.stateOfOrigin, 80), lga: clean(b.lga, 100), village: clean(b.village, 120),
+      address: clean(b.address, 500), email: clean(b.email, 180), phone: clean(b.phone, 40),
+      guardian_name: clean(b.guardianName, 180), guardian_relationship: clean(b.guardianRelationship, 80),
+      guardian_phone: clean(b.guardianPhone, 40), previous_school: clean(b.previousSchool, 180),
+      qualifications: clean(b.qualifications, 1000), programme: clean(b.programme, 180),
+      department: clean(b.department, 180), level: clean(b.level, 80), session: clean(b.session, 30),
+      jsb_course: clean(b.jsbCourse, 180), skills_interests: clean(b.skillsInterests, 1000),
+      service_interests: clean(b.serviceInterests, 1000), christian_journey: clean(b.christianJourney, 3000),
+      passport_filename: clean(b.passportFilename, 255)
+    });
+    res.status(201).json({ message: "Application submitted. Keep your application number safe.", applicationNo });
+  } catch (e) {
+    console.error("Application save failed:", e.message);
+    res.status(500).json({ message: "Could not save the application. Please try again." });
+  }
+});
+
+app.get("/api/admin/applications", (req, res) => {
+  if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
+  res.json(db.prepare("SELECT * FROM applications ORDER BY id DESC").all());
+});
+
+app.patch("/api/admin/applications/:id", (req, res) => {
+  if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
+  const status = clean((req.body || {}).status, 30);
+  const allowed = ["Pending", "Approved", "Rejected"];
+  if (!allowed.includes(status)) return res.status(400).json({ message: "Choose Pending, Approved or Rejected." });
+  const appRow = db.prepare("SELECT * FROM applications WHERE id=?").get(req.params.id);
+  if (!appRow) return res.status(404).json({ message: "Application not found." });
+  db.prepare("UPDATE applications SET status=?, notes=? WHERE id=?").run(status, clean((req.body || {}).notes, 1000), req.params.id);
+  let studentId = null;
+  let temporaryPassword = null;
+  if (status === "Approved") {
+    const base = "RSIMT-" + new Date().getFullYear() + "-" + String(appRow.id).padStart(4, "0");
+    studentId = base;
+    const exists = db.prepare("SELECT id FROM students WHERE student_id=?").get(studentId);
+    if (!exists) {
+      temporaryPassword = crypto.randomBytes(9).toString("base64url");
+      db.prepare("INSERT INTO students(student_id,full_name,email,password_hash) VALUES(?,?,?,?)")
+        .run(studentId, appRow.full_name, appRow.email || "", hashPassword(temporaryPassword));
+    }
+  }
+  res.json({ message: status === "Approved" ? "Application approved." : "Application status updated.", studentId, temporaryPassword });
+});
+
+app.post("/api/student-letters", (req, res) => {
+  const b = req.body || {};
+  const studentId = clean(b.studentId, 80);
+  const studentName = clean(b.studentName, 180);
+  const letterType = clean(b.letterType, 100);
+  const subject = clean(b.subject, 180);
+  const details = clean(b.details, 4000);
+  if (!studentId || !studentName || !letterType || !subject || !details) {
+    return res.status(400).json({ message: "Complete all fields before submitting." });
+  }
+  const result = db.prepare(`INSERT INTO student_letters(student_id,student_name,letter_type,subject,details)
+    VALUES(?,?,?,?,?)`).run(studentId, studentName, letterType, subject, details);
+  res.status(201).json({ message: "Your letter/request has been submitted for staff review.", reference: "LTR-" + result.lastInsertRowid });
+});
+
+app.get("/api/admin/student-letters", (req, res) => {
+  if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
+  res.json(db.prepare("SELECT * FROM student_letters ORDER BY id DESC").all());
+});
+
+app.patch("/api/admin/student-letters/:id", (req, res) => {
+  if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
+  const status = clean((req.body || {}).status, 30);
+  if (!["Pending", "Under Review", "Approved", "Rejected"].includes(status)) {
+    return res.status(400).json({ message: "Choose a valid status." });
+  }
+  const result = db.prepare("UPDATE student_letters SET status=?, admin_remarks=? WHERE id=?")
+    .run(status, clean((req.body || {}).adminRemarks, 2000), req.params.id);
+  if (!result.changes) return res.status(404).json({ message: "Letter/request not found." });
+  res.json({ message: "Letter/request updated." });
+});
+
 app.listen(PORT, () => {
   console.log("RSIMT portal: http://localhost:" + PORT);
 });
