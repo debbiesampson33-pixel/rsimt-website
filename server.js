@@ -79,6 +79,18 @@ CREATE TABLE IF NOT EXISTS subjects (
 );
 `);
 
+app.get("/api/subjects", (req, res) => {
+  const subjects = db.prepare(`
+    SELECT
+      course_code AS code,
+      course_title AS title
+    FROM subjects
+    ORDER BY course_code
+  `).all();
+
+  res.json(subjects);
+});
+
 app.get("/api/admin/subjects", (req, res) => {
   if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
   const subjects = db.prepare(`SELECT id, course_code, course_title, credit_units, programme, level, semester, session FROM subjects ORDER BY programme, level, semester, course_code`).all();

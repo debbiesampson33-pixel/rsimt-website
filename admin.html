@@ -124,8 +124,10 @@
       <option>Second</option>
     </select>
 
-    <label>Course</label>
-    <input id="course" placeholder="e.g. Information Technology">
+   <label>Course</label>
+<select id="course" required>
+  <option value="">Loading approved courses...</option>
+</select>
 
     <label>Score</label>
     <input id="score" type="number" min="0" max="100" placeholder="0 - 100">
@@ -133,11 +135,53 @@
     <button onclick="addResult()">Add Result</button>
     <div id="result-message" class="message"></div>
   </div>
+
+
+
+ 
 </main>
 
 <script>
 
+ async function loadApprovedCourses() {
+  const courseSelect = document.getElementById("course");
 
+  courseSelect.innerHTML =
+    '<option value="">Loading courses...</option>';
+
+  try {
+    const response = await fetch("/api/subjects");
+    if (!response.ok) {
+      throw new Error("Could not load subjects.");
+    }
+
+    const subjects = await response.json();
+
+    courseSelect.innerHTML =
+      '<option value="">Select a course</option>';
+
+    subjects.forEach(subject => {
+      const option = document.createElement("option");
+
+      option.value = subject.code;
+      option.textContent =
+        subject.code + " - " + subject.title;
+
+      courseSelect.appendChild(option);
+    });
+
+    if (subjects.length === 0) {
+      courseSelect.innerHTML =
+        '<option value="">No approved courses found</option>';
+    }
+  } catch (error) {
+    courseSelect.innerHTML =
+      '<option value="">Could not load courses</option>';
+    console.error(error);
+  }
+}
+
+loadApprovedCourses();
 
 
 async function loadDashboardStats() {
