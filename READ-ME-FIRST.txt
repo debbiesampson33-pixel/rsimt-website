@@ -1,0 +1,16 @@
+RSIMT SUBJECT MANAGEMENT UPDATE
+
+This is a small update bundle, NOT a complete website backup.
+It contains:
+- server.js (adds a subjects table and protected admin API endpoints)
+- admin.html (adds a link to Subject Management)
+- subjects.html (the new Subject Management page)
+
+IMPORTANT:
+1. Keep your existing rsimt.db, .git, package.json, node_modules, and all other website files.
+2. Back up the current server.js and admin.html before replacing them.
+3. Copy these three files into your existing RSIMT-WEBSITE-A project folder, replacing server.js and admin.html only when you are sure the backup exists. Add subjects.html as a new file.
+4. Commit and push through GitHub Desktop, then wait for Render to deploy.
+5. The new catalogue starts empty on purpose. Confirm course codes, titles and credit units from the official school record before adding subjects. It does not automatically connect subjects to the Add Result dropdown yet; existing result entry still accepts a typed course name.
+6. Test with care. Do not delete or replace rsimt.db. The new database table is created automatically by server.js and does not remove existing students, staff, results, applications or letters.
+7. Admin API calls use the existing ADMIN_KEY environment configuration. Ensure a strong ADMIN_KEY is set in Render and keep it private.

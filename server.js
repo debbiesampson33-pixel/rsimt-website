@@ -63,6 +63,51 @@ function adminAllowed(req) {
   return req.headers["x-admin-key"] === ADMIN_KEY;
 }
 
+// Subject catalogue for RSIMT course registration. Existing subjects/results are preserved.
+db.exec(`
+CREATE TABLE IF NOT EXISTS subjects (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  course_code TEXT NOT NULL,
+  course_title TEXT NOT NULL,
+  credit_units INTEGER NOT NULL DEFAULT 1,
+  programme TEXT NOT NULL,
+  level TEXT NOT NULL,
+  semester TEXT NOT NULL,
+  session TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(course_code, programme, level, semester, session)
+);
+`);
+
+app.get("/api/admin/subjects", (req, res) => {
+  if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
+  const subjects = db.prepare(`SELECT id, course_code, course_title, credit_units, programme, level, semester, session FROM subjects ORDER BY programme, level, semester, course_code`).all();
+  res.json(subjects);
+});
+
+app.post("/api/admin/subjects", (req, res) => {
+  if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
+  const { courseCode, courseTitle, creditUnits, programme, level, semester, session } = req.body || {};
+  const units = Number(creditUnits);
+  if (![courseCode, courseTitle, programme, level, semester, session].every(v => typeof v === "string" && v.trim()) || !Number.isInteger(units) || units < 1 || units > 10) {
+    return res.status(400).json({ message: "Please complete every field. Credit units must be a whole number from 1 to 10." });
+  }
+  try {
+    db.prepare(`INSERT INTO subjects(course_code, course_title, credit_units, programme, level, semester, session) VALUES(?,?,?,?,?,?,?)`).run(courseCode.trim().toUpperCase(), courseTitle.trim(), units, programme.trim(), level.trim(), semester.trim(), session.trim());
+    res.json({ message: "Subject added successfully." });
+  } catch (error) {
+    if (String(error.message).includes("UNIQUE")) return res.status(409).json({ message: "This course code is already listed for that programme, level, semester and session." });
+    res.status(500).json({ message: "Could not save the subject." });
+  }
+});
+
+app.delete("/api/admin/subjects/:id", (req, res) => {
+  if (!adminAllowed(req)) return res.status(403).json({ message: "Invalid admin key." });
+  const result = db.prepare("DELETE FROM subjects WHERE id=?").run(Number(req.params.id));
+  if (!result.changes) return res.status(404).json({ message: "Subject not found." });
+  res.json({ message: "Subject deleted." });
+});
+
 app.post("/api/student/login", (req, res) => {
   const { studentId, password } = req.body || {};
 
