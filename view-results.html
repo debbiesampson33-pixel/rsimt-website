@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,127 +7,141 @@
 <title>View Results</title>
 
 <style>
-
-body{
-font-family:Arial,sans-serif;
-background:#f4f7f6;
-padding:30px;
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7f6;
+  padding: 30px;
 }
-
-.container{
-max-width:1200px;
-margin:auto;
-background:white;
-padding:25px;
-border-radius:15px;
+.container {
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
 }
-
-h1{
-color:#087f3f;
+h1 { color: #087f3f; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
 }
-
-th,td{
-padding:12px;
-border:1px solid #ddd;
-text-align:left;
+th {
+  background: #087f3f;
+  color: white;
 }
-
-th{
-background:#087f3f;
-color:white;
+input {
+  padding: 10px;
+  margin: 8px 0;
+  max-width: 100%;
 }
-
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
 </style>
-
 </head>
+
 <body>
-
 <div class="container">
+  <h1>All Results</h1>
 
-<h1>All Results</h1>
+  <label for="adminKey">Admin Key</label><br>
+  <input type="password" id="adminKey"
+         placeholder="Enter admin key" autocomplete="off">
+  <button onclick="loadResults()">Load Results</button>
 
-<table>
-
-<thead>
-<tr>
-<th>Result ID</th>
-<th>Student ID</th>
-<th>Session</th>
-<th>Semester</th>
-<th>Course</th>
-<th>Score</th>
-<th>Grade</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody id="resultsTable"></tbody>
-
-</table>
-
+  <table>
+    <thead>
+      <tr>
+        <th>Result ID</th>
+        <th>Student ID</th>
+        <th>Session</th>
+        <th>Semester</th>
+        <th>Course</th>
+        <th>Score</th>
+        <th>Grade</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="resultsTable"></tbody>
+  </table>
 </div>
 
 <script>
+async function loadResults() {
+  try {
+    const response = await fetch("/api/results");
+    if (!response.ok) throw new Error("Could not load results.");
 
-async function loadResults(){
+    const results = await response.json();
+    const table = document.getElementById("resultsTable");
+    table.innerHTML = "";
 
-const response = await fetch("/api/results");
+    results.forEach(result => {
+      const row = document.createElement("tr");
 
-const results = await response.json();
+      [
+        result.id, result.student_id, result.session,
+        result.semester, result.course, result.score, result.grade
+      ].forEach(value => {
+        const cell = document.createElement("td");
+        cell.textContent = value ?? "";
+        row.appendChild(cell);
+      });
 
-const table =
-document.getElementById("resultsTable");
-
-table.innerHTML = "";
-
-results.forEach(result => {
-
-table.innerHTML += `
-<tr>
-<td>${result.id}</td>
-<td>${result.student_id}</td>
-<td>${result.session}</td>
-<td>${result.semester}</td>
-<td>${result.course}</td>
-<td>${result.score}</td>
-<td>${result.grade}</td>
-<td>
-<button onclick="deleteResult(${result.id})">
-Delete
-</button>
-</td>
-</tr>
-`;
-
-});
-
+      const actionCell = document.createElement("td");
+      const button = document.createElement("button");
+      button.textContent = "Delete";
+      button.onclick = () => deleteResult(result.id);
+      actionCell.appendChild(button);
+      row.appendChild(actionCell);
+      table.appendChild(row);
+    });
+  } catch (error) {
+    alert(error.message);
+  }
 }
 
-async function deleteResult(resultId){
+async function deleteResult(resultId) {
+  const adminKey = document.getElementById("adminKey").value.trim();
 
-const response = await fetch(
-"/api/admin/results/" + resultId,
-{
-method:"DELETE"
-});
+  if (!adminKey) {
+    alert("Enter the admin key first.");
+    return;
+  }
 
-const data = await response.json();
+  if (!confirm("Are you sure you want to delete this result?")) return;
 
-alert(data.message);
+  try {
+    const response = await fetch(
+      "/api/admin/results/" + encodeURIComponent(resultId),
+      {
+        method: "DELETE",
+        headers: {
+          "X-Admin-Key": adminKey
+        }
+      }
+    );
 
-loadResults();
+    const data = await response.json();
 
+    if (!response.ok) {
+      alert(data.message || "Could not delete the result.");
+      return;
+    }
+
+    alert(data.message || "Result deleted successfully.");
+    await loadResults();
+  } catch (error) {
+    alert("Request failed. Please try again.");
+  }
 }
-
-loadResults();
-
 </script>
-
 </body>
 </html>
+```
