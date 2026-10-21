@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,382 +8,726 @@
     <title>Our Institutions | Right Steps Incorporated</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* OUTREACH SERVICES SECTION */
+
+        .outreach-section {
+            padding: 80px 8%;
+            background: #f5f8f4;
+        }
+
+        .outreach-heading {
+            max-width: 800px;
+            margin: 0 auto 45px;
+            text-align: center;
+        }
+
+        .outreach-heading span {
+            color: #548044;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .outreach-heading h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin: 12px 0;
+            color: #263d27;
+        }
+
+        .outreach-heading p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .outreach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .outreach-card {
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .outreach-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+       /* Larger image space for outreach programme cards */
+
+.outreach-image {
+    width: 100%;
+    height: 400px;
+    background: #e7ece5;
+    overflow: hidden;
+}
+
+.outreach-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+        .outreach-content {
+            padding: 25px;
+        }
+
+        .outreach-content .outreach-label {
+            color: #548044;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .outreach-content h3 {
+            color: #263d27;
+            font-size: 1.4rem;
+            margin: 12px 0;
+        }
+
+        .outreach-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .outreach-link {
+            display: inline-block;
+            color: #426b36;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px solid #b4ca9d;
+            padding-bottom: 5px;
+        }
+
+        .outreach-link:hover {
+            color: #243d20;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 950px) {
+            .outreach-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .outreach-section {
+                padding: 55px 5%;
+            }
+
+            .outreach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .outreach-image {
+                height: 240px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
 
-<header class="site-header">
+    <!-- HEADER -->
 
-    <a href="index.html" class="logo-area">
-        <img src="myimages/RIGHTSTEPSINCLOGO.jpg" alt="Right Steps Incorporated Logo">
+    <header class="site-header">
 
-        <div>
-            <h2>RIGHT STEPS</h2>
-            <span>INCORPORATED</span>
-        </div>
-    </a>
+        <a href="index.html" class="logo-area">
 
-    
-       <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="rsimt.html">RSIMT</a>
-    <a href="institutions.html" class="active">Institutions</a>
-    <a href="contact.html">Contact</a>
-</nav>
-    
+            <img
+                src="myimages/RIGHTSTEPSINCLOGO.jpg"
+                alt="Right Steps Incorporated Logo"
+            >
 
-    <button class="menu-btn">☰</button>
-
-</header>
-
-
-<!-- PAGE HERO -->
-
-<section class="institutions-hero">
-
-    <div>
-
-        <span>RIGHT STEPS INCORPORATED</span>
-
-        <h1>
-            Our <strong>Institutions</strong>
-        </h1>
-
-        <p>
-            Discover the institutions, programmes and community
-            initiatives that form part of Right Steps Incorporated.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- INSTITUTIONS -->
-
-<section class="all-institutions">
-
-    <div class="section-heading centered">
-
-        <span>EXPLORE</span>
-
-        <h2>Our Institutions & Initiatives</h2>
-
-        <p>
-            Each area has its own purpose while contributing to
-            the wider vision of Right Steps Incorporated.
-        </p>
-
-    </div>
-
-
-    <div class="institution-page-grid">
-
-
-        <!-- RSIMT -->
-
-        <article class="institution-page-card featured">
-
-            <div class="institution-number">01</div>
-
-            <span>PRIVATE POLYTECHNIC</span>
-
-            <h3>
-                Right Steps Institute of Management & Technology
-            </h3>
-
-            <p>
-                RSIMT provides opportunities for academic learning,
-                practical skills development, technology and
-                the Work-to-Learn Program.
-            </p>
-
-            <a href="rsimt.html">
-                Explore RSIMT →
-            </a>
-
-        </article>
-
-
-        <!-- CHRISTIAN SCHOOL -->
-
-        <article class="institution-page-card">
-
-            <div class="institution-number">02</div>
-
-            <span>EDUCATION</span>
-
-            <h3>
-                Right Steps Christian School
-            </h3>
-
-            <p>
-                An educational institution focused on developing
-                learners through academic and character formation.
-            </p>
-
-            <a href="rscs.html">Explore School →</a>
-
-        </article>
-
-
-        <!-- EARLY CHILDHOOD -->
-
-        <article class="institution-page-card">
-
-            <div class="institution-number">03</div>
-
-            <span>EARLY CHILDHOOD</span>
-
-            <h3>
-                Early Childhood Education
-            </h3>
-
-            <p>
-                A focus on supporting the learning, development
-                and growth of young children.
-            </p>
-            <a href="early-childhood.html">Learn More →</a>
-
-        </article>
-
-
-      <article class="institution-page-card">
-
-    <div class="institution-number">04</div>
-
-    <span>PROGRAMME</span>
-
-    <h3>
-        JSB
-    </h3>
-
-    <p>
-        A learning area within the wider Right Steps
-        structure. Detailed programme information can
-        be added when finalized.
-    </p>
-
-    <a href="jsb.html">
-    Explore JSB →</a>
-
-</article>
-
-
-       <div class="institution-card">
-
-    <h3>Susana Homes</h3>
-
-    <p>
-        Susana Homes has two campuses, providing
-        a place of care, support and development
-        for the children connected with the homes.
-    </p>
-
-    <div class="campus-list">
-
-        <span>Campus One</span>
-        <span>Campus Two</span>
-
-    </div>
-
-    <a href="susana-homes.html" class="explore-link">
-    Explore Susana Homes →
-</a>
-
-
-</div>
-
-        <!-- ELALIF FARM -->
-
-        <article class="institution-page-card">
-
-            <div class="institution-number">06</div>
-
-            <span>AGRICULTURE</span>
-
-            <h3>
-                Ella  Lee Farm
-            </h3>
-
-            <p>
-                An agricultural initiative involving areas such
-                as poultry and farming.
-            </p>
-
-        <a href="ella-lee-farm.html">
-    Explore Ella Lee Farm →
-</a>
-
-        </article>
-
-
-        <article class="institution-page-card">
-
-            <div class="institution-number">07</div>
-
-            <span>MINISTRY</span>
-
-            <h3>
-                Churches & Ministries
-            </h3>
-
-            <p>
-                Churches and ministry activities connected with
-                the wider Right Steps organization.
-            </p>
-
-            <a href="churches.html"> Explore Churches →</a>
-
-        </article>
-
-    </div>
-
-</section>
-
-<!-- CHARITY FRIDAY -->
-
-<section class="charity-friday">
-
-    <div class="charity-content">
-
-        <span>COMMUNITY & SERVICE</span>
-
-        <h2>
-            Charity <strong>Friday</strong>
-        </h2>
-
-        <p>
-            Charity Friday is a special initiative hosted by
-            Right Steps Christian School (RSCS), bringing together
-            JSB students and staff in a spirit of service, giving
-            and community support.
-        </p>
-
-        <p>
-            It provides an opportunity for students and staff to
-            participate in activities that encourage compassion,
-            responsibility and service to others.
-        </p>
-
-    </div>
-
-    <div class="charity-image">
-
-     
-            <img src="myimages/jsbpic.jpeg" alt="Charity Friday ">
             <div>
+                <h2>RIGHT STEPS</h2>
+                <span>INCORPORATED</span>
+            </div>
 
-    </div>
-
-</section>
-
-
-<!-- CTA -->
-
-<section class="cta-section">
-
-    <div>
-
-        <span>RIGHT STEPS INCORPORATED</span>
-
-        <h2>
-            Discover the opportunities available across our institutions.
-        </h2>
-
-    </div>
-
-    <a href="contact.html" class="btn primary-btn">
-        Contact Us
-    </a>
-
-</section>
+        </a>
 
 
-
-
-
-      <!-- FOOTER -->
-
-<footer class="site-footer">
-
-    <div class="footer-content">
-
-        <!-- BRAND -->
-
-        <div class="footer-brand">
-
-            <h2>RIGHT STEPS</h2>
-
-            <p>
-                Building people, building communities through
-                education, faith, practical skills and service.
-            </p>
-
-        </div>
-
-
-        <!-- QUICK LINKS -->
-
-        <div class="footer-links">
-
-            <h3>Quick Links</h3>
+        <nav class="navbar">
 
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="rsimt.html">RSIMT</a>
-            <a href="institutions.html">Institutions</a>
+            <a href="institutions.html" class="active">Institutions</a>
             <a href="contact.html">Contact</a>
 
-        </div>
+        </nav>
+
+        <button class="menu-btn" aria-label="Open navigation menu">
+            ☰
+        </button>
+
+    </header>
 
 
-        <!-- RSIMT -->
+    <main>
 
-        <div class="footer-links">
+        <!-- PAGE HERO -->
 
-            <h3>RSIMT</h3>
+        <section class="institutions-hero">
 
-            <a href="student-portal.html">Student Portal</a>
-            <a href="result-checker.html">Result Checker</a>
-            <a href="staff-portal.html">Staff Portal</a>
-            <a href="founder.html">Our Founder</a>
+            <div>
 
-        </div>
+                <span>RIGHT STEPS INCORPORATED</span>
+
+                <h1>
+                    Our <strong>Institutions</strong>
+                </h1>
+
+                <p>
+                    Discover the institutions, programmes and community
+                    initiatives that form part of Right Steps Incorporated.
+                </p>
+
+            </div>
+
+        </section>
 
 
-        <!-- CONTACT -->
+        <!-- INSTITUTIONS -->
 
-        <div class="footer-contact">
+        <section class="all-institutions">
 
-            <h3>Contact</h3>
+            <div class="section-heading centered">
 
-            <p>Right Steps Incorporated</p>
+                <span>EXPLORE</span>
 
-            <p>
-                Nigeria
-            </p>
+                <h2>Our Institutions & Initiatives</h2>
 
-            <a href="contact.html">
-                Contact Us →
-            </a>
+                <p>
+                    Each institution has its own purpose while contributing
+                    to the wider vision of Right Steps Incorporated.
+                </p>
 
-        </div>
+            </div>
+
+
+            <div class="institution-page-grid">
+
+
+                <!-- 01: RSIMT -->
+
+                <article class="institution-page-card featured">
+
+                    <div class="institution-number">01</div>
+
+                    <span>PRIVATE POLYTECHNIC</span>
+
+                    <h3>
+                        Right Steps Institute of Management & Technology
+                    </h3>
+
+                    <p>
+                        RSIMT provides opportunities for academic learning,
+                        practical skills development, technology and the
+                        Work-to-Learn Programme.
+                    </p>
+
+                    <a href="rsimt.html">
+                        Explore RSIMT →
+                    </a>
+
+                </article>
+
+
+                <!-- 02: RSCS -->
+
+                <article class="institution-page-card">
+
+                    <div class="institution-number">02</div>
+
+                    <span>EDUCATION</span>
+
+                    <h3>
+                        Right Steps Christian School
+                    </h3>
+
+                    <p>
+                        An educational institution focused on developing
+                        learners through academic learning and
+                        character formation.
+                    </p>
+
+                    <a href="rscs.html">
+                        Explore School →
+                    </a>
+
+                </article>
+
+
+                <!-- 03: EARLY CHILDHOOD -->
+
+                <article class="institution-page-card">
+
+                    <div class="institution-number">03</div>
+
+                    <span>EARLY CHILDHOOD</span>
+
+                    <h3>
+                        Early Childhood Education
+                    </h3>
+
+                    <p>
+                        Supporting the learning, development and growth
+                        of young children.
+                    </p>
+
+                    <a href="early-childhood.html">
+                        Learn More →
+                    </a>
+
+                </article>
+
+
+                <!-- 04: JSB -->
+
+                <article class="institution-page-card">
+
+                    <div class="institution-number">04</div>
+
+                    <span>EDUCATION</span>
+
+                    <h3>
+                        Jan and Sue Blackwell Studies (JSB)
+                    </h3>
+
+                    <p>
+                        Explore JSB and its place within the educational
+                        initiatives of Right Steps Incorporated.
+                    </p>
+
+                    <a href="jsb.html">
+                        Explore JSB →
+                    </a>
+
+                </article>
+
+
+                <!-- 05: SUSANA HOMES -->
+
+                <article class="institution-page-card">
+
+                    <div class="institution-number">05</div>
+
+                    <span>CARE & DEVELOPMENT</span>
+
+                    <h3>
+                        Susana Homes
+                    </h3>
+
+                    <p>
+                        Susana Homes has two campuses providing a place
+                        of care, support and development for the children
+                        connected with the homes.
+                    </p>
+
+                    <div class="campus-list">
+
+                        <span>Campus One</span>
+                        <span>Campus Two</span>
+
+                    </div>
+
+                    <a href="susana-homes.html">
+                        Explore Susana Homes →
+                    </a>
+
+                </article>
+
+
+                <!-- 06: ELLA LEE FARM -->
+
+                <article class="institution-page-card">
+
+                    <div class="institution-number">06</div>
+
+                    <span>AGRICULTURE</span>
+
+                    <h3>
+                        Ella Lee Farm
+                    </h3>
+
+                    <p>
+                        An agricultural initiative involving areas
+                        such as poultry and farming.
+                    </p>
+
+                    <a href="ella-lee-farm.html">
+                        Explore Ella Lee Farm →
+                    </a>
+
+                </article>
+
+
+                <!-- 07: CHURCHES -->
+
+                <article class="institution-page-card">
+
+                    <div class="institution-number">07</div>
+
+                    <span>MINISTRY</span>
+
+                    <h3>
+                        Churches & Ministries
+                    </h3>
+
+                    <p>
+                        Discover church communities and ministry activities
+                        connected with Right Steps Incorporated.
+                    </p>
+
+                    <a href="churches.html">
+                        Explore Churches →
+                    </a>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- CHARITY FRIDAY -->
+
+        <section class="charity-friday">
+
+            <div class="charity-content">
+
+                <span>COMMUNITY & SERVICE</span>
+
+                <h2>
+                    Charity <strong>Friday</strong>
+                </h2>
+
+                <p>
+                    Charity Friday is an initiative hosted by Right Steps
+                    Christian School (RSCS), bringing together JSB students
+                    and staff in a spirit of service, giving and
+                    community support.
+                </p>
+
+                <p>
+                    It provides an opportunity for students and staff
+                    to participate in activities that encourage compassion,
+                    responsibility and service to others.
+                </p>
+
+            </div>
+
+
+            <div class="charity-image">
+
+                <img
+                    src="myimages/jsbpic.jpeg"
+                    alt="JSB students participating in Charity Friday"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- OUTREACH SERVICES -->
+
+        <section class="outreach-section" id="outreach-services">
+
+            <div class="outreach-heading">
+
+                <span>COMMUNITY OUTREACH</span>
+
+                <h2>Our Outreach Services</h2>
+
+                <p>
+                    Right Steps Incorporated is connected with initiatives
+                    that focus on care, community engagement and service.
+                    Explore our outreach initiatives below.
+                </p>
+
+            </div>
+
+
+            <div class="outreach-grid">
+
+
+              <!-- WIDOWS CARE -->
+
+<article class="outreach-card">
+
+    <div class="outreach-image">
+
+        <img
+            src="myimages/WIDOWS CARE.jpeg"
+            alt="Widows Care outreach by Right Steps Incorporated"
+            loading="lazy"
+        >
 
     </div>
 
+    <div class="outreach-content">
 
-    <div class="footer-bottom">
+        <span class="outreach-label">
+            COMMUNITY OUTREACH
+        </span>
+
+        <h3>Widows Care</h3>
 
         <p>
-            © 2026 Right Steps Incorporated.
-            All Rights Reserved.
+            Widows Care is a community outreach initiative that
+            demonstrates love, compassion, and practical support
+            for elderly women.
         </p>
+
+        <p>
+            On designated community service days, including Charity
+            Friday, children and staff from Susana Homes visit
+            women's homes to assist with everyday household tasks.
+        </p>
+
+        <p>
+            These activities may include fetching water, gathering
+            firewood, weeding, and washing clothes. Through these
+            visits, the children learn the importance of kindness,
+            service, and caring for others.
+        </p>
+
+        <p>
+            <strong>Outreach Coordinator:</strong>
+            Mrs. Salome Ohaja
+        </p>
+
+        <a href="contact.html" class="outreach-link">
+            Contact Us →
+        </a>
 
     </div>
 
-</footer>
+</article>
+
+
+              <!-- TEA TIME STORIES -->
+
+<article class="outreach-card">
+
+    <div class="outreach-image">
+
+        <img
+            src="myimages/TEA TIME STORIES.jpeg"
+            alt="Tea Time Stories outreach programme by Right Steps Incorporated"
+            loading="lazy"
+        >
+
+    </div>
+
+    <div class="outreach-content">
+
+        <span class="outreach-label">
+            COMMUNITY OUTREACH
+        </span>
+
+        <h3>Tea Time Stories</h3>
+
+        <p>
+            Tea Time Stories is an outreach programme that provides
+            an opportunity to feed elderly women physically and
+            spiritually. Twice a month, the outreach team visits
+            elderly women to read scriptures with them.
+        </p>
+
+        <p>
+            Tea and biscuits are shared, creating an opportunity
+            for fellowship and for people to hear the Word of God
+            in their local language.
+        </p>
+
+        <div class="tea-time-details">
+
+            <p><strong>Frequency:</strong> Twice a month</p>
+
+            <p><strong>Monthly support:</strong> $2 per woman</p>
+
+            <p><strong>Current recipients:</strong> 10+</p>
+
+            <p><strong>Fundraising goal:</strong> $240</p>
+
+        </div>
+
+        <a href="contact.html" class="outreach-link">
+            Contact Us →
+        </a>
+
+    </div>
+
+</article>
+
+                <!-- INGA TABOR PARK -->
+
+                <article class="outreach-card">
+
+                    <div class="outreach-image">
+
+                        <!-- Replace the filename with your actual picture -->
+
+                        <img
+                            src="myimages/inga-tabor-park.jpg"
+                            alt="Inga Tabor Park project"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+
+                    <div class="outreach-content">
+
+                        <span class="outreach-label">
+                            COMMUNITY PROJECT
+                        </span>
+
+                        <h3>Inga Tabor Park</h3>
+
+                        <p>
+                            Inga Tabor Park is another project to feature
+                            under Right Steps Incorporated. Add photographs
+                            and further information here to explain the
+                            park and its purpose.
+                        </p>
+
+                        <a href="contact.html" class="outreach-link">
+                            Contact Us →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- CALL TO ACTION -->
+
+        <section class="cta-section">
+
+            <div>
+
+                <span>RIGHT STEPS INCORPORATED</span>
+
+                <h2>
+                    Discover the opportunities available across our
+                    institutions and community initiatives.
+                </h2>
+
+            </div>
+
+            <a href="contact.html" class="btn primary-btn">
+                Contact Us
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <h2>RIGHT STEPS</h2>
+
+                <p>
+                    Building people, building communities through
+                    education, faith, practical skills and service.
+                </p>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="rsimt.html">RSIMT</a>
+                <a href="institutions.html">Institutions</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+
+            <!-- RSIMT -->
+
+            <div class="footer-links">
+
+                <h3>RSIMT</h3>
+
+                <a href="student-portal.html">Student Portal</a>
+                <a href="result-checker.html">Result Checker</a>
+                <a href="staff-portal.html">Staff Portal</a>
+                <a href="founder.html">Our Founder</a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="footer-contact">
+
+                <h3>Contact</h3>
+
+                <p>Right Steps Incorporated</p>
+
+                <p>Nigeria</p>
+
+                <a href="contact.html">
+                    Contact Us →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- COPYRIGHT -->
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Right Steps Incorporated.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
 
 </body>
+
 </html>

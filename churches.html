@@ -8,6 +8,138 @@
     <title>Churches & Ministries | Right Steps Incorporated</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Children's programme section */
+
+        .church-programmes {
+            padding: 70px 8%;
+            background: #f4f8f4;
+        }
+
+        .programmes-heading {
+            max-width: 850px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .programmes-heading span {
+            color: #347447;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .programmes-heading h2 {
+            font-size: 2.2rem;
+            margin: 12px 0;
+        }
+
+        .programmes-heading p {
+            line-height: 1.8;
+        }
+
+        .programmes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .programme-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding-bottom: 25px;
+        }
+
+        /* Image space */
+
+        .programme-image {
+            width: 100%;
+            height: 280px;
+            background: #e9eee9;
+            overflow: hidden;
+        }
+
+        .programme-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .programme-image img[src=""] {
+            display: none;
+        }
+
+        .programme-content {
+            padding: 25px;
+        }
+
+        .programme-day {
+            display: inline-block;
+            background: #e5f2e7;
+            color: #245d35;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .programme-content h3 {
+            font-size: 1.6rem;
+            margin: 18px 0 12px;
+            color: #245d35;
+        }
+
+        .programme-content p {
+            line-height: 1.8;
+        }
+
+        .programme-content ul {
+            padding-left: 22px;
+            line-height: 2;
+        }
+
+        .programme-support {
+            border-top: 1px solid #e0e7e0;
+            padding-top: 15px;
+            margin-top: 20px;
+            color: #347447;
+            font-weight: bold;
+        }
+
+        .programme-note {
+            max-width: 850px;
+            margin: 35px auto 0;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .church-verse {
+            font-style: italic;
+        }
+
+        @media (max-width: 750px) {
+            .programmes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .church-programmes {
+                padding: 45px 5%;
+            }
+
+            .programmes-heading h2 {
+                font-size: 1.8rem;
+            }
+
+            .programme-image {
+                height: 230px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +161,7 @@
 
     <main>
 
-        <!-- HERO -->
+        <!-- HERO SECTION -->
 
         <section class="churches-hero">
 
@@ -37,13 +169,10 @@
 
                 <span>RIGHT STEPS INCORPORATED</span>
 
-                <h1>
-                    Churches & Ministries
-                </h1>
+                <h1>Churches & Ministries</h1>
 
                 <p>
-                    Churches and ministries connected with
-                    the wider Right Steps community.
+                    Faith, fellowship, children's care, and community service.
                 </p>
 
             </div>
@@ -51,7 +180,7 @@
         </section>
 
 
-        <!-- INTRODUCTION -->
+        <!-- OUR CHURCHES -->
 
         <section class="churches-section">
 
@@ -59,47 +188,49 @@
 
                 <span>OUR CHURCHES</span>
 
-                <h2>
-                    Our Church Communities
-                </h2>
+                <h2>Our Church Communities</h2>
 
                 <p>
-                    This section presents the churches that
-                    are part of the wider structure identified
-                    by Right Steps Incorporated.
+                    Our church communities provide opportunities for worship,
+                    fellowship, learning God's Word, and supporting children
+                    and communities.
                 </p>
 
             </div>
 
 
-            <!-- CHURCH CARDS -->
-
             <div class="churches-grid">
+
 
                 <!-- CHURCH 1 -->
 
                 <div class="church-card">
 
-                    
-                    <img src="myimages/churchofchrist@susnanahomes.png" alt="Church Of Christ @ Susana Homes">
+                    <img
+                        src="myimages/churchofchrist@susnanahomes.png"
+                        alt="Church of Christ at Susana Homes"
+                    >
 
                     <div class="church-card-content">
 
-                        <h3>
-                            Church of Christ @ Susana Home
-                        </h3>
+                        <h3>Church of Christ @ Susana Home</h3>
 
                         <p>
-                           The Church of Christ @ Susana Home provides a place where the children at Susana Home Campus One can gather together to worship God, learn His Word, and grow in their faith.
+                            The Church of Christ at Susana Home provides
+                            a place where children can gather to worship God,
+                            learn His Word, and grow in their faith.
 
-The church creates an environment where the children can worship, fellowship, and develop a closer relationship with God while growing together as a community.
-
-“Let the little children come to me.” — Matthew 19:14
+                            Through worship and fellowship, the children
+                            are encouraged to develop their relationship
+                            with God and one another.
                         </p>
 
-                        <a href="contact.html">
-                            Contact Us →
-                        </a>
+                        <p class="church-verse">
+                            "Let the little children come to me."
+                            — Matthew 19:14
+                        </p>
+
+                        <a href="contact.html">Contact Us →</a>
 
                     </div>
 
@@ -110,56 +241,79 @@ The church creates an environment where the children can worship, fellowship, an
 
                 <div class="church-card">
 
-                   <img src="myimages/churchofchrist@obuzor.png" alt="Church Of Christ @ Susana Homes">
+                    <img
+                        src="myimages/churchofchrist@obuzor.png"
+                        alt="Church of Christ Obuzor"
+                    >
 
                     <div class="church-card-content">
 
-                        <h3>
-                            Church of Christ Obuzor
-                        </h3>
+                        <h3>Church of Christ Obuzor</h3>
 
                         <p>
-                           The Church of Christ Obuzor provides a place where people in the Obuzor community can gather together to worship God, study His Word, and fellowship with one another.
+                            The Church of Christ Obuzor serves as a place
+                            where people can gather to worship God,
+                            study His Word, and fellowship together.
 
-As part of the Right Steps family, the church creates opportunities for children, young people, women, and men to come together in faith, grow spiritually, and strengthen their relationship with God.
-
-“As for me and my house, we will serve the Lord.” — Joshua 24:15
+                            The church encourages spiritual growth,
+                            unity, and a stronger relationship with God.
                         </p>
 
-                        <a href="contact.html">
-                            Contact Us →
-                        </a>
+                        <p class="church-verse">
+                            "As for me and my house, we will serve the Lord."
+                            — Joshua 24:15
+                        </p>
+
+                        <a href="contact.html">Contact Us →</a>
 
                     </div>
 
                 </div>
 
 
-                <!-- CHURCH 3 -->
+                <!-- CHURCH 3: UMUAHALA -->
 
                 <div class="church-card">
 
-                    <img src="myimages/churchofchristumahala.jpeg" alt="Church of Christ @ Umahala">
+                    <img
+                        src="myimages/Church of christ umahala signboard.png"
+                        alt="Church of Christ Umuahala"
+                    >
 
                     <div class="church-card-content">
 
-                        <h3>
-                            Church of Christ Umahala
-                        </h3>
+                        <h3>Church of Christ, Umuahala</h3>
 
                         <p>
-                            The Church of Christ Umahala serves as a place of worship for the people of the Umahala community, providing an opportunity for children, women, men, and young people to gather together in faith and worship God.
+                            The Church of Christ, Umuahala, provides
+                            a place for worship, fellowship, and learning
+                            the Word of God.
 
-The church is supported by the Right Steps family and also serves as a way of reaching out to children in the community through acts of care and support, including providing food and vitamins where needed.
-
-Through worship, fellowship, and community service, the church seeks to share God's love while creating opportunities for people to grow together in faith.
-
-“Let us not love with words or speech but with actions and in truth.” — 1 John 3:18
+                            Supported by Right Steps Incorporated,
+                            the church also provides opportunities
+                            for children to receive care and learn
+                            biblical teachings through special programmes.
                         </p>
 
-                        <a href="contact.html">
-                            Contact Us →
+                        <p>
+                            These children's programmes include
+                            Vitamin Church, held every Sunday, and
+                            Feed My Flock, held every Thursday.
+                        </p>
+
+                        <p class="church-verse">
+                            "Let us not love with words or speech but
+                            with actions and in truth."
+                            — 1 John 3:18
+                        </p>
+
+                        <a href="#children-programmes">
+                            View Children's Programmes ↓
                         </a>
+
+                        <br><br>
+
+                        <a href="contact.html">Contact Us →</a>
 
                     </div>
 
@@ -170,36 +324,201 @@ Through worship, fellowship, and community service, the church seeks to share Go
 
                 <div class="church-card">
 
-                  <img src="myimages/churchofchristoyigbo.jpeg" alt="Church of Christ @ Oyigbo">
+                    <img
+                        src="myimages/churchofchristoyigbo.jpeg"
+                        alt="Church of Christ Oyigbo"
+                    >
 
                     <div class="church-card-content">
 
-                        <h3>
-                            Church of Christ Oyigbo
-                        </h3>
+                        <h3>Church of Christ Oyigbo</h3>
 
                         <p>
-                       The Church of Christ Oyigbo provides a place where the children of Susana Homes Campus Two can gather together to worship God, learn His Word, and grow in their faith.
+                            The Church of Christ Oyigbo provides a place
+                            where children can gather to worship God,
+                            learn His Word, and grow in faith.
 
-The church gives the children an opportunity to worship, fellowship, and build their relationship with God in a caring and supportive community.
-
-“Train up a child in the way he should go.” — Proverbs 22:6
+                            Through worship and fellowship, the children
+                            are encouraged to develop spiritually and
+                            build a stronger relationship with God.
                         </p>
 
-                        <a href="contact.html">
-                            Contact Us →
-                        </a>
+                        <p class="church-verse">
+                            "Train up a child in the way he should go."
+                            — Proverbs 22:6
+                        </p>
+
+                        <a href="contact.html">Contact Us →</a>
 
                     </div>
 
                 </div>
+
 
             </div>
 
         </section>
 
 
-        <!-- MINISTRY SECTION -->
+        <!-- CHILDREN'S PROGRAMMES -->
+
+        <section
+            class="church-programmes"
+            id="children-programmes"
+        >
+
+            <div class="programmes-heading">
+
+                <span>CHURCH OF CHRIST, UMUAHALA</span>
+
+                <h2>Children's Care & Bible Teaching</h2>
+
+                <p>
+                    Right Steps Incorporated supports these programmes
+                    to help provide food and nutritional support for
+                    children while encouraging their spiritual growth.
+                </p>
+
+            </div>
+
+
+            <div class="programmes-grid">
+
+
+                <!-- VITAMIN CHURCH -->
+
+                <article class="programme-card">
+
+                    <!--
+                    IMAGE PLACEHOLDER:
+                    Put your Vitamin Church picture in the myimages folder.
+                    Name it vitamin-church.jpg
+                    -->
+
+                    <div class="programme-image">
+
+                        <img
+                            src="myimages/VITAMIN CHURCH.png"
+                            alt="Children participating in Vitamin Church"
+                        >
+
+                    </div>
+
+
+                    <div class="programme-content">
+
+                        <span class="programme-day">
+                            Every Sunday
+                        </span>
+
+                        <h3>Vitamin Church</h3>
+
+                        <p>
+                            Vitamin Church is a children's programme held
+                            every Sunday at the Church of Christ, Umuahala.
+
+                            The programme provides food and nutritional
+                            support for children as an expression of
+                            love, care, and concern for their well-being.
+                        </p>
+
+                        <p>
+                            The children receive:
+                        </p>
+
+                        <ul>
+                            <li>Rice</li>
+                            <li>Eggs</li>
+                            <li>Beans</li>
+                            <li>Milk</li>
+                            <li>Vitamins</li>
+                        </ul>
+
+                        <p class="programme-support">
+                            Supported by Right Steps Incorporated.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FEED MY FLOCK -->
+
+                <article class="programme-card">
+
+                    <!--
+                    IMAGE PLACEHOLDER:
+                    Put your Feed My Flock picture in the myimages folder.
+                    Name it feed-my-flock.jpg
+                    -->
+
+                    <div class="programme-image">
+
+                        <img
+                            src="myimages/churchofchristumahala.jpeg"
+                            alt="Children participating in Feed My Flock"
+                        >
+
+                    </div>
+
+
+                    <div class="programme-content">
+
+                        <span class="programme-day">
+                            Every Thursday
+                        </span>
+
+                        <h3>Feed My Flock</h3>
+
+                        <p>
+                            Feed My Flock is a children's programme held
+                            every Thursday at the Church of Christ,
+                            Umuahala.
+
+                            The programme provides food and nutritional
+                            support while teaching the children the
+                            Word of God.
+                        </p>
+
+                        <p>
+                            The children receive:
+                        </p>
+
+                        <ul>
+                            <li>Milk</li>
+                            <li>Eggs</li>
+                            <li>Vitamins</li>
+                        </ul>
+
+                        <p>
+                            During the programme, the children are also
+                            taught biblical lessons to help them learn
+                            about God and grow in their faith.
+                        </p>
+
+                        <p class="programme-support">
+                            Supported by Right Steps Incorporated.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+            <p class="programme-note">
+                Vitamin Church and Feed My Flock focus on the care and
+                spiritual development of children in the Umuahala community.
+                Both programmes are supported by Right Steps Incorporated.
+            </p>
+
+        </section>
+
+
+        <!-- COMMUNITY AND MINISTRY -->
 
         <section class="churches-section churches-light">
 
@@ -207,25 +526,40 @@ The church gives the children an opportunity to worship, fellowship, and build t
 
                 <div class="churches-content">
 
-                    <span>MINISTRY</span>
+                    <span>OUR MINISTRY</span>
 
-                    <h2>
-                        Faith, Service and Community
-                    </h2>
+                    <h2>Faith, Care and Community</h2>
 
                     <p>
-                        The churches provide places where
-                        people can gather, worship, learn
-                        and serve their communities.
+                        Right Steps Incorporated supports church and
+                        community initiatives that encourage faith,
+                        learning, compassion, and service.
                     </p>
 
-                
+                    <p>
+                        Through programmes for children and other
+                        community activities, we seek to demonstrate
+                        love through practical care and the teaching
+                        of God's Word.
+                    </p>
+
+                    <a href="contact.html">Contact Right Steps →</a>
 
                 </div>
-<img src="myimages/churchcommunitypic.png" alt="Church Ministry Photo">
+
+
+                <!-- COMMUNITY IMAGE -->
+
+                <img
+                    src="myimages/churchcommunitypic.png"
+                    alt="Church community"
+                >
+
             </div>
 
         </section>
+
+    </main>
 
 
     <!-- FOOTER -->
@@ -234,18 +568,22 @@ The church gives the children an opportunity to worship, fellowship, and build t
 
         <div class="footer-content">
 
+
+            <!-- BRAND -->
+
             <div class="footer-brand">
 
                 <h2>RIGHT STEPS</h2>
 
                 <p>
-                    Building people, building communities
-                    through education, faith, practical
-                    skills and service.
+                    Building people and communities through education,
+                    faith, practical skills, and service.
                 </p>
 
             </div>
 
+
+            <!-- QUICK LINKS -->
 
             <div class="footer-links">
 
@@ -253,20 +591,21 @@ The church gives the children an opportunity to worship, fellowship, and build t
 
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
-                <a href="rsimt.html">RSIMT</a>
                 <a href="institutions.html">Institutions</a>
                 <a href="contact.html">Contact</a>
 
             </div>
 
 
+            <!-- INSTITUTIONS -->
+
             <div class="footer-links">
 
-                <h3>Institutions</h3>
+                <h3>Our Institutions</h3>
 
                 <a href="rsimt.html">RSIMT</a>
-                <a href="jsb.html">JSB</a>
                 <a href="rscs.html">RSCS</a>
+                <a href="jsb.html">JSB</a>
                 <a href="susana-homes.html">Susana Homes</a>
                 <a href="elalif-farm.html">Elalif Farm</a>
                 <a href="churches.html">Churches</a>
@@ -274,17 +613,15 @@ The church gives the children an opportunity to worship, fellowship, and build t
             </div>
 
 
+            <!-- CONTACT -->
+
             <div class="footer-contact">
 
                 <h3>Contact</h3>
 
-                <p>
-                    Right Steps Incorporated
-                </p>
+                <p>Right Steps Incorporated</p>
 
-                <p>
-                    Nigeria
-                </p>
+                <p>Nigeria</p>
 
                 <a href="contact.html">
                     Contact Us →
@@ -292,8 +629,11 @@ The church gives the children an opportunity to worship, fellowship, and build t
 
             </div>
 
+
         </div>
 
+
+        <!-- COPYRIGHT -->
 
         <div class="footer-bottom">
 
@@ -307,4 +647,5 @@ The church gives the children an opportunity to worship, fellowship, and build t
     </footer>
 
 </body>
+
 </html>
